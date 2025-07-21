@@ -8,6 +8,7 @@ Includes FULL TuskLang SDK capabilities for maximum power and flexibility
 from flask import Flask, current_app, g, request, jsonify
 from typing import Any, Dict, List, Optional, Union
 import logging
+import os
 
 try:
     import tusktsk
@@ -382,6 +383,330 @@ class FlaskTSK:
         if section_data:
             return list(section_data.keys())
         return []
+
+    def setup_project_structure(self, project_path: str = None):
+        """
+        Create Flask-TSK special folder structure for asset management, layouts, and optimization.
+        
+        Creates:
+        - tsk/assets/ (CSS, JS, images, fonts)
+        - tsk/layouts/ (HTML templates, headers, footers)
+        - tsk/optimization/ (minification, obfuscation scripts)
+        - tsk/config/ (TuskLang configuration files)
+        - tsk/templates/ (Jinja2 templates)
+        - tsk/static/ (Flask static files)
+        - tsk/components/ (Ready-to-use Flask components)
+        """
+        if project_path is None:
+            project_path = os.getcwd()
+        
+        # Define the folder structure
+        folders = [
+            'tsk/assets/css',
+            'tsk/assets/js', 
+            'tsk/assets/images',
+            'tsk/assets/fonts',
+            'tsk/layouts/headers',
+            'tsk/layouts/footers',
+            'tsk/layouts/navigation',
+            'tsk/optimization/scripts',
+            'tsk/optimization/tools',
+            'tsk/config',
+            'tsk/templates',
+            'tsk/static/css',
+            'tsk/static/js',
+            'tsk/static/images',
+            'tsk/static/fonts',
+            'tsk/build',
+            'tsk/cache',
+            'tsk/components',
+            'tsk/components/navigation',
+            'tsk/components/forms',
+            'tsk/components/ui',
+            'tsk/components/layouts',
+            'tsk/components/ecommerce',
+            'tsk/components/blog',
+            'tsk/components/dashboard'
+        ]
+        
+        # Create folders
+        for folder in folders:
+            folder_path = os.path.join(project_path, folder)
+            os.makedirs(folder_path, exist_ok=True)
+            current_app.logger.info(f"Created Flask-TSK folder: {folder}")
+        
+        # Create default files
+        self._create_default_files(project_path)
+        
+        current_app.logger.info("Flask-TSK project structure setup complete!")
+        return True
+    
+    def _create_default_files(self, project_path: str):
+        """Create default configuration and template files."""
+        
+        # Default peanu.tsk configuration
+        peanu_content = '''[flask_tsk]
+# Flask-TSK Configuration
+version = "1.0.1"
+auto_setup = true
+optimization_enabled = true
+
+[assets]
+# Asset management configuration
+css_dir = "tsk/assets/css"
+js_dir = "tsk/assets/js"
+images_dir = "tsk/assets/images"
+fonts_dir = "tsk/assets/fonts"
+
+[optimization]
+# Optimization settings
+minify_css = true
+minify_js = true
+obfuscate_js = false
+compress_images = true
+cache_enabled = true
+
+[layouts]
+# Layout configuration
+default_header = "tsk/layouts/headers/default.html"
+default_footer = "tsk/layouts/footers/default.html"
+default_nav = "tsk/layouts/navigation/default.html"
+
+[components]
+# Component configuration
+auto_include = true
+component_dir = "tsk/components"
+default_theme = "modern"
+responsive = true
+
+[build]
+# Build settings
+output_dir = "tsk/build"
+source_maps = true
+watch_mode = false
+'''
+        
+        # Default header template
+        header_content = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title|default('Flask-TSK App') }}</title>
+    
+    <!-- Flask-TSK Asset Management -->
+    {% if tsk_available %}
+        <link rel="stylesheet" href="{{ tsk_asset('css', 'main.css') }}">
+        <link rel="stylesheet" href="{{ tsk_asset('css', 'components.css') }}">
+        <script src="{{ tsk_asset('js', 'main.js') }}" defer></script>
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    {% endif %}
+    
+    <!-- Meta tags -->
+    <meta name="description" content="{{ description|default('Flask-TSK Application') }}">
+    <meta name="keywords" content="{{ keywords|default('flask, tusk, python') }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    {% include 'tsk/layouts/navigation/default.html' %}
+    
+    <!-- Main content wrapper -->
+    <main class="main-content">
+'''
+        
+        # Default footer template
+        footer_content = '''    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; {{ current_year|default(2024) }} Flask-TSK Application. Powered by <a href="https://github.com/cyber-boost/tusktsk" target="_blank">TuskLang</a>.</p>
+        </div>
+    </footer>
+    
+    <!-- Flask-TSK Asset Management -->
+    {% if tsk_available %}
+        <script src="{{ tsk_asset('js', 'footer.js') }}"></script>
+    {% else %}
+        <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
+    {% endif %}
+</body>
+</html>
+'''
+        
+        # Default navigation template
+        nav_content = '''<nav class="navbar">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="{{ url_for('index') }}" class="navbar-item">
+                Flask-TSK
+            </a>
+        </div>
+        
+        <div class="navbar-menu">
+            <a href="{{ url_for('index') }}" class="navbar-item">Home</a>
+            <a href="{{ url_for('about') }}" class="navbar-item">About</a>
+            <a href="{{ url_for('contact') }}" class="navbar-item">Contact</a>
+        </div>
+    </div>
+</nav>
+'''
+        
+        # Default CSS
+        css_content = '''/* Flask-TSK Default Styles */
+:root {
+    --primary-color: #4ECDC4;
+    --secondary-color: #FF6B6B;
+    --accent-color: #FFE66D;
+    --text-color: #1A1A1A;
+    --background-color: #F8F9FA;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-item {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.navbar-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+/* Footer */
+.footer {
+    background: var(--text-color);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+'''
+        
+        # Default JavaScript
+        js_content = '''// Flask-TSK Default JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Flask-TSK Application Loaded');
+    
+    // Initialize navigation
+    initNavigation();
+    
+    // Initialize any TuskLang features
+    if (typeof tsk !== 'undefined') {
+        initTuskFeatures();
+    }
+});
+
+function initNavigation() {
+    // Add active class to current page
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll('.navbar-item');
+    
+    navItems.forEach(item => {
+        if (item.getAttribute('href') === currentPath) {
+            item.classList.add('active');
+        }
+    });
+}
+
+function initTuskFeatures() {
+    // Initialize TuskLang-specific features
+    console.log('TuskLang features initialized');
+    
+    // Example: Dynamic configuration loading
+    if (tsk && tsk.getConfig) {
+        const theme = tsk.getConfig('ui', 'theme', 'light');
+        document.body.setAttribute('data-theme', theme);
+    }
+}
+
+// Utility functions
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+'''
+        
+        # Files to create
+        files = {
+            'tsk/config/peanu.tsk': peanu_content,
+            'tsk/layouts/headers/default.html': header_content,
+            'tsk/layouts/footers/default.html': footer_content,
+            'tsk/layouts/navigation/default.html': nav_content,
+            'tsk/assets/css/main.css': css_content,
+            'tsk/assets/js/main.js': js_content,
+            'tsk/static/css/main.css': css_content,
+            'tsk/static/js/main.js': js_content,
+        }
+        
+        # Create files
+        for file_path, content in files.items():
+            full_path = os.path.join(project_path, file_path)
+            with open(full_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            current_app.logger.info(f"Created Flask-TSK file: {file_path}")
 
 
 # Convenience function to get Flask-TSK instance

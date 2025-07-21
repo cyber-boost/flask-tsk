@@ -87,9 +87,14 @@ setup(
     ],
     keywords='flask tusk tusktsk configuration management performance template-engine turbo verified-benchmarks',
     project_urls={
-        'Bug Reports': 'https://github.com/grim-project/flask-tsk/issues',
-        'Source': 'https://github.com/grim-project/flask-tsk',
+        'Bug Reports': 'https://github.com/cyber-boost/flask-tsk/issues',
+        'Source': 'https://github.com/cyber-boost/flask-tsk',
         'Documentation': 'https://flask-tsk.readthedocs.io/',
-        'Performance Guide': 'https://github.com/grim-project/flask-tsk/blob/main/PERFORMANCE_REVOLUTION.md',
+        'Performance Guide': 'https://github.com/cyber-boost/flask-tsk/blob/main/PERFORMANCE_REVOLUTION.md',
+    },
+    entry_points={
+        'console_scripts': [
+            'flask-tsk=tsk_flask.cli:main',
+        ],
     },
 ) 
