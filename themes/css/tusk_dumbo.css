@@ -1,0 +1,493 @@
+/**
+ * 🐘 TuskPHP Dumbo Theme - Error Tracking & Debug
+ * ===============================================
+ * Inspired by Dumbo the elephant specialist for error tracking
+ * Terminal-inspired design with debugging aesthetics
+ */
+
+:root {
+    /* Dumbo Color Palette - Terminal & Debug Focused */
+    --primary-color: #ff6b6b;
+    --primary-dark: #e74c3c;
+    --secondary-color: #4ecdc4;
+    --secondary-dark: #26d0ce;
+    --accent-color: #ffe66d;
+    --accent-dark: #ffd93d;
+    
+    /* Terminal Colors */
+    --terminal-bg: #0d1117;
+    --terminal-secondary: #21262d;
+    --terminal-border: #30363d;
+    --text-terminal: #f0f6fc;
+    --text-terminal-secondary: #8b949e;
+    --text-terminal-muted: #6e7681;
+    
+    /* Status Colors */
+    --error-color: #f85149;
+    --warning-color: #d29922;
+    --success-color: #3fb950;
+    --info-color: #58a6ff;
+    --debug-color: #bc8cff;
+    
+    /* Syntax Highlighting */
+    --syntax-keyword: #ff7b72;
+    --syntax-string: #a5d6ff;
+    --syntax-number: #79c0ff;
+    --syntax-comment: #8b949e;
+    --syntax-function: #d2a8ff;
+    --syntax-variable: #ffa657;
+    
+    /* Fonts */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    --font-sans: 'Inter', 'Segoe UI', sans-serif;
+    
+    /* Animations */
+    --blink-duration: 1s;
+    --typing-duration: 0.1s;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-mono);
+    background-color: var(--terminal-bg);
+    color: var(--text-terminal);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Terminal Window */
+.terminal-dumbo {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+}
+
+.terminal-header-dumbo {
+    background: var(--terminal-secondary);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.terminal-dots-dumbo {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-dot-dumbo {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-dot-dumbo.red { background: var(--error-color); }
+.terminal-dot-dumbo.yellow { background: var(--warning-color); }
+.terminal-dot-dumbo.green { background: var(--success-color); }
+
+.terminal-title-dumbo {
+    color: var(--text-terminal-secondary);
+    font-size: 0.9rem;
+    margin-left: 1rem;
+}
+
+.terminal-content-dumbo {
+    padding: 1rem;
+    min-height: 200px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Terminal Text Effects */
+.terminal-prompt-dumbo {
+    color: var(--success-color);
+    margin-right: 0.5rem;
+}
+
+.terminal-cursor-dumbo {
+    background: var(--text-terminal);
+    animation: blink var(--blink-duration) infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.typing-effect-dumbo {
+    overflow: hidden;
+    border-right: 2px solid var(--text-terminal);
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink var(--blink-duration) infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Error Display */
+.error-container-dumbo {
+    background: rgba(248, 81, 73, 0.1);
+    border: 1px solid var(--error-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.error-container-dumbo::before {
+    content: '🚨';
+    position: absolute;
+    top: -10px;
+    left: 1rem;
+    background: var(--terminal-bg);
+    padding: 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+.error-title-dumbo {
+    color: var(--error-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.error-message-dumbo {
+    color: var(--text-terminal);
+    font-family: var(--font-mono);
+    background: var(--terminal-secondary);
+    padding: 1rem;
+    border-radius: 4px;
+    border-left: 4px solid var(--error-color);
+    margin: 1rem 0;
+}
+
+.error-stack-dumbo {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.8rem;
+    color: var(--text-terminal-secondary);
+}
+
+.error-stack-dumbo .line-number {
+    color: var(--text-terminal-muted);
+    margin-right: 1rem;
+    user-select: none;
+}
+
+.error-stack-dumbo .error-line {
+    background: rgba(248, 81, 73, 0.2);
+    color: var(--error-color);
+}
+
+/* Debug Panel */
+.debug-panel-dumbo {
+    background: var(--terminal-secondary);
+    border: 1px solid var(--terminal-border);
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.debug-tabs-dumbo {
+    display: flex;
+    background: var(--terminal-bg);
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.debug-tab-dumbo {
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    color: var(--text-terminal-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.debug-tab-dumbo.active {
+    color: var(--info-color);
+    background: var(--terminal-secondary);
+}
+
+.debug-tab-dumbo.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--info-color);
+}
+
+.debug-content-dumbo {
+    padding: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Log Levels */
+.log-entry-dumbo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.log-timestamp-dumbo {
+    color: var(--text-terminal-muted);
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+
+.log-level-dumbo {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.log-level-dumbo.error {
+    background: var(--error-color);
+    color: var(--terminal-bg);
+}
+
+.log-level-dumbo.warning {
+    background: var(--warning-color);
+    color: var(--terminal-bg);
+}
+
+.log-level-dumbo.info {
+    background: var(--info-color);
+    color: var(--terminal-bg);
+}
+
+.log-level-dumbo.debug {
+    background: var(--debug-color);
+    color: var(--terminal-bg);
+}
+
+.log-level-dumbo.success {
+    background: var(--success-color);
+    color: var(--terminal-bg);
+}
+
+.log-message-dumbo {
+    flex: 1;
+    color: var(--text-terminal);
+}
+
+/* Code Highlighting */
+.code-dumbo {
+    background: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    border-radius: 4px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+}
+
+.code-dumbo .keyword { color: var(--syntax-keyword); }
+.code-dumbo .string { color: var(--syntax-string); }
+.code-dumbo .number { color: var(--syntax-number); }
+.code-dumbo .comment { color: var(--syntax-comment); }
+.code-dumbo .function { color: var(--syntax-function); }
+.code-dumbo .variable { color: var(--syntax-variable); }
+
+/* Performance Metrics */
+.metrics-dumbo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.metric-card-dumbo {
+    background: var(--terminal-secondary);
+    border: 1px solid var(--terminal-border);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.metric-value-dumbo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--info-color);
+    font-family: var(--font-mono);
+}
+
+.metric-label-dumbo {
+    color: var(--text-terminal-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.5rem;
+}
+
+.metric-change-dumbo {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.metric-change-dumbo.positive {
+    color: var(--success-color);
+}
+
+.metric-change-dumbo.negative {
+    color: var(--error-color);
+}
+
+/* Navigation */
+.navbar-dumbo {
+    background: var(--terminal-bg);
+    border-bottom: 2px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-dumbo .navbar-brand {
+    color: var(--primary-color);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.navbar-dumbo .nav-link {
+    color: var(--text-terminal-secondary);
+    font-family: var(--font-mono);
+    transition: all 0.2s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.navbar-dumbo .nav-link:hover,
+.navbar-dumbo .nav-link.active {
+    color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.1);
+}
+
+/* Buttons */
+.btn-dumbo {
+    background: var(--terminal-secondary);
+    border: 1px solid var(--terminal-border);
+    color: var(--text-terminal);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-dumbo:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--terminal-bg);
+}
+
+.btn-dumbo-danger {
+    background: var(--error-color);
+    border-color: var(--error-color);
+    color: var(--terminal-bg);
+}
+
+.btn-dumbo-success {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--terminal-bg);
+}
+
+/* Search */
+.search-dumbo {
+    background: var(--terminal-secondary);
+    border: 1px solid var(--terminal-border);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    color: var(--text-terminal);
+    font-family: var(--font-mono);
+    width: 100%;
+}
+
+.search-dumbo:focus {
+    outline: none;
+    border-color: var(--info-color);
+    box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.2);
+}
+
+.search-dumbo::placeholder {
+    color: var(--text-terminal-muted);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--terminal-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--terminal-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-terminal-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .terminal-content-dumbo {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .metrics-dumbo {
+        grid-template-columns: 1fr;
+    }
+    
+    .debug-tabs-dumbo {
+        flex-wrap: wrap;
+    }
+    
+    .error-container-dumbo {
+        padding: 1rem;
+    }
+}
+
+/* Loading Animation */
+.loading-dumbo {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--terminal-border);
+    border-top: 2px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,508 @@
+/**
+ * 🐘 TuskPHP Modern Theme
+ * ======================
+ * Sleek, contemporary design with gradients and smooth animations
+ */
+
+:root {
+    /* Modern Color Palette */
+    --primary-color: #667eea;
+    --primary-dark: #764ba2;
+    --secondary-color: #4facfe;
+    --secondary-dark: #00f2fe;
+    --success-color: #00b09b;
+    --success-dark: #96c93d;
+    --warning-color: #f2994a;
+    --warning-dark: #f2c94c;
+    --danger-color: #ff5f6d;
+    --danger-dark: #ffc371;
+    --info-color: #667eea;
+    --info-dark: #764ba2;
+    
+    /* Neutrals */
+    --dark-color: #2c3e50;
+    --dark-secondary: #34495e;
+    --light-color: #f8f9fa;
+    --light-secondary: #e9ecef;
+    --white: #ffffff;
+    --black: #000000;
+    
+    /* Text Colors */
+    --text-primary: #333333;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --text-light: #ffffff;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+    --gradient-success: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+    --gradient-dark: linear-gradient(135deg, var(--dark-color) 0%, var(--dark-secondary) 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 50%;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    line-height: 1.6;
+    background-color: var(--light-color);
+}
+
+/* Modern Buttons */
+.btn-modern {
+    background: var(--gradient-primary);
+    border: none;
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.btn-modern:hover::before {
+    left: 100%;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--white);
+}
+
+.btn-modern-secondary {
+    background: var(--gradient-secondary);
+}
+
+.btn-modern-success {
+    background: var(--gradient-success);
+}
+
+.btn-modern-outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-modern-outline:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+/* Modern Cards */
+.card-modern {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--light-secondary);
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.card-modern:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-modern-header {
+    background: var(--gradient-primary);
+    color: var(--white);
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+.card-modern-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-secondary);
+}
+
+.card-modern-body {
+    padding: var(--spacing-xl);
+}
+
+.card-modern-footer {
+    background: var(--light-color);
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--light-secondary);
+}
+
+/* Modern Navigation */
+.navbar-modern {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--light-secondary);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.navbar-modern.scrolled {
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-link-modern {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.nav-link-modern::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+.nav-link-modern:hover::after,
+.nav-link-modern.active::after {
+    width: 100%;
+}
+
+.nav-link-modern:hover {
+    color: var(--primary-color);
+    background: rgba(102, 126, 234, 0.1);
+}
+
+/* Modern Forms */
+.form-control-modern {
+    border: 2px solid var(--light-secondary);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    font-size: 16px;
+    transition: all var(--transition-normal);
+    background: var(--white);
+}
+
+.form-control-modern:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+}
+
+.form-group-modern {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-label-modern {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+/* Modern Alerts */
+.alert-modern {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.alert-modern::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+.alert-modern-success {
+    background: rgba(0, 176, 155, 0.1);
+    color: var(--success-color);
+}
+
+.alert-modern-success::before {
+    background: var(--success-color);
+}
+
+.alert-modern-warning {
+    background: rgba(242, 153, 74, 0.1);
+    color: var(--warning-color);
+}
+
+.alert-modern-warning::before {
+    background: var(--warning-color);
+}
+
+.alert-modern-danger {
+    background: rgba(255, 95, 109, 0.1);
+    color: var(--danger-color);
+}
+
+.alert-modern-danger::before {
+    background: var(--danger-color);
+}
+
+.alert-modern-info {
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--info-color);
+}
+
+.alert-modern-info::before {
+    background: var(--info-color);
+}
+
+/* Modern Tables */
+.table-modern {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.table-modern thead {
+    background: var(--gradient-primary);
+    color: var(--white);
+}
+
+.table-modern th {
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-lg);
+    border: none;
+}
+
+.table-modern td {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--light-secondary);
+    vertical-align: middle;
+}
+
+.table-modern tbody tr:hover {
+    background: var(--light-color);
+}
+
+/* Modern Sidebar */
+.sidebar-modern {
+    background: var(--white);
+    border-right: 1px solid var(--light-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar-modern .nav-item {
+    margin-bottom: var(--spacing-xs);
+}
+
+.sidebar-modern .nav-link {
+    color: var(--text-secondary);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    margin: 0 var(--spacing-md);
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-modern .nav-link:hover,
+.sidebar-modern .nav-link.active {
+    background: var(--gradient-primary);
+    color: var(--white);
+    transform: translateX(4px);
+}
+
+/* Modern Footer */
+.footer-modern {
+    background: var(--gradient-dark);
+    color: var(--text-light);
+    position: relative;
+}
+
+.footer-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+}
+
+/* Modern Animations */
+@keyframes modernFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modernSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes modernPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-modern-fade-in {
+    animation: modernFadeIn 0.6s ease-out;
+}
+
+.animate-modern-slide-in {
+    animation: modernSlideIn 0.6s ease-out;
+}
+
+.animate-modern-pulse {
+    animation: modernPulse 2s infinite;
+}
+
+/* Modern Utilities */
+.gradient-text-modern {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: var(--font-weight-bold);
+}
+
+.glass-modern {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.shadow-modern {
+    box-shadow: var(--shadow-lg);
+}
+
+.border-modern {
+    border: 2px solid;
+    border-image: var(--gradient-primary) 1;
+}
+
+/* Modern Responsive Grid */
+.grid-modern {
+    display: grid;
+    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-modern-2 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-modern-3 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #ffffff;
+        --text-secondary: #adb5bd;
+        --light-color: #1a1a1a;
+        --light-secondary: #2d2d2d;
+        --white: #2d2d2d;
+    }
+    
+    .card-modern {
+        background: var(--white);
+        border-color: var(--light-secondary);
+    }
+    
+    .navbar-modern {
+        background: rgba(45, 45, 45, 0.95);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --spacing-xl: 1.5rem;
+        --spacing-2xl: 2rem;
+    }
+    
+    .btn-modern {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .card-modern-body {
+        padding: var(--spacing-lg);
+    }
+    
+    .grid-modern {
+        grid-template-columns: 1fr;
+    }
+}

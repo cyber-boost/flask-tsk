@@ -1,0 +1,463 @@
+/* ============================================
+   TUSK UNIVERSAL THEMES
+   Apply these to any Tusk page for consistent theming
+   ============================================ */
+
+/* Base Theme Variables */
+:root {
+    /* Dark Pro Theme (Default) */
+    --bg-primary: #0a0e1b;
+    --bg-secondary: #151b2d;
+    --bg-tertiary: #1e2642;
+    --bg-quaternary: #334155;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-light: rgba(99, 102, 241, 0.1);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --border: #2d3654;
+    --border-light: #475569;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --terminal-bg: #0f172a;
+    --terminal-green: #22c55e;
+    --terminal-blue: #3b82f6;
+    --terminal-yellow: #eab308;
+    --terminal-red: #ef4444;
+    --terminal-purple: #8b5cf6;
+    --terminal-cyan: #06b6d4;
+    --gradient-primary: linear-gradient(135deg, var(--accent), var(--info));
+    --gradient-success: linear-gradient(135deg, var(--success), var(--terminal-cyan));
+    --gradient-warning: linear-gradient(135deg, var(--warning), var(--terminal-yellow));
+    --gradient-danger: linear-gradient(135deg, var(--danger), var(--terminal-red));
+}
+
+/* Light Pro Theme */
+body.theme-light {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #e2e8f0;
+    --bg-quaternary: #cbd5e1;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-tertiary: #94a3b8;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-light: rgba(99, 102, 241, 0.1);
+    --success: #059669;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --info: #2563eb;
+    --border: #e2e8f0;
+    --border-light: #cbd5e1;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --terminal-bg: #f1f5f9;
+    --terminal-green: #059669;
+    --terminal-blue: #2563eb;
+    --terminal-yellow: #d97706;
+    --terminal-red: #dc2626;
+    --terminal-purple: #7c3aed;
+    --terminal-cyan: #0891b2;
+}
+
+/* Ocean Blue Theme */
+body.theme-blue {
+    --bg-primary: #0c1e3d;
+    --bg-secondary: #1e3a8a;
+    --bg-tertiary: #1d4ed8;
+    --bg-quaternary: #2563eb;
+    --text-primary: #dbeafe;
+    --text-secondary: #93c5fd;
+    --text-tertiary: #60a5fa;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --accent-light: rgba(59, 130, 246, 0.2);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #06b6d4;
+    --border: #1d4ed8;
+    --border-light: #2563eb;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --terminal-bg: #0c1e3d;
+    --terminal-green: #22c55e;
+    --terminal-blue: #06b6d4;
+    --terminal-yellow: #eab308;
+    --terminal-red: #ef4444;
+    --terminal-purple: #8b5cf6;
+    --terminal-cyan: #06b6d4;
+}
+
+/* Purple Haze Theme */
+body.theme-purple {
+    --bg-primary: #1e1b3d;
+    --bg-secondary: #3d2b69;
+    --bg-tertiary: #553c9a;
+    --bg-quaternary: #7c3aed;
+    --text-primary: #ede9fe;
+    --text-secondary: #c4b5fd;
+    --text-tertiary: #a78bfa;
+    --accent: #8b5cf6;
+    --accent-hover: #7c3aed;
+    --accent-light: rgba(139, 92, 246, 0.2);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --border: #553c9a;
+    --border-light: #7c3aed;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --terminal-bg: #1e1b3d;
+    --terminal-green: #22c55e;
+    --terminal-blue: #3b82f6;
+    --terminal-yellow: #eab308;
+    --terminal-red: #ef4444;
+    --terminal-purple: #a78bfa;
+    --terminal-cyan: #06b6d4;
+}
+
+/* Emerald Forest Theme */
+body.theme-emerald {
+    --bg-primary: #0a1f1a;
+    --bg-secondary: #064e3b;
+    --bg-tertiary: #059669;
+    --bg-quaternary: #10b981;
+    --text-primary: #d1fae5;
+    --text-secondary: #a7f3d0;
+    --text-tertiary: #6ee7b7;
+    --accent: #10b981;
+    --accent-hover: #059669;
+    --accent-light: rgba(16, 185, 129, 0.2);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --border: #059669;
+    --border-light: #10b981;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --terminal-bg: #0a1f1a;
+    --terminal-green: #22c55e;
+    --terminal-blue: #3b82f6;
+    --terminal-yellow: #eab308;
+    --terminal-red: #ef4444;
+    --terminal-purple: #8b5cf6;
+    --terminal-cyan: #06b6d4;
+}
+
+/* Sunset Orange Theme */
+body.theme-sunset {
+    --bg-primary: #3d1a00;
+    --bg-secondary: #7c2d12;
+    --bg-tertiary: #c2410c;
+    --bg-quaternary: #ea580c;
+    --text-primary: #fed7aa;
+    --text-secondary: #fdba74;
+    --text-tertiary: #fb923c;
+    --accent: #ea580c;
+    --accent-hover: #c2410c;
+    --accent-light: rgba(234, 88, 12, 0.2);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --border: #c2410c;
+    --border-light: #ea580c;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    --terminal-bg: #3d1a00;
+    --terminal-green: #22c55e;
+    --terminal-blue: #3b82f6;
+    --terminal-yellow: #eab308;
+    --terminal-red: #ef4444;
+    --terminal-purple: #8b5cf6;
+    --terminal-cyan: #06b6d4;
+}
+
+/* Theme Transition Effects */
+body {
+    transition: all 0.3s ease;
+}
+
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme Selector Component */
+.theme-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.theme-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow);
+    padding: 0.75rem;
+    min-width: 200px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.theme-dropdown.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.theme-dropdown-header {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.theme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.theme-option {
+    background: var(--bg-tertiary);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+.theme-option.active {
+    border-color: var(--accent);
+    background: var(--accent-light);
+}
+
+.theme-option:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.theme-preview {
+    width: 100%;
+    height: 20px;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    display: flex;
+}
+
+.theme-dark .theme-preview {
+    background: linear-gradient(90deg, #0a0e1b 0%, #151b2d 50%, #1e2642 100%);
+}
+
+.theme-light .theme-preview {
+    background: linear-gradient(90deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+}
+
+.theme-blue .theme-preview {
+    background: linear-gradient(90deg, #0c1e3d 0%, #1e3a8a 50%, #1d4ed8 100%);
+}
+
+.theme-purple .theme-preview {
+    background: linear-gradient(90deg, #1e1b3d 0%, #3d2b69 50%, #553c9a 100%);
+}
+
+.theme-emerald .theme-preview {
+    background: linear-gradient(90deg, #0a1f1a 0%, #064e3b 50%, #059669 100%);
+}
+
+.theme-sunset .theme-preview {
+    background: linear-gradient(90deg, #3d1a00 0%, #7c2d12 50%, #c2410c 100%);
+}
+
+/* Universal Component Styles */
+.btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.btn:hover {
+    background: var(--bg-quaternary);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.btn-success {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+}
+
+.btn-warning {
+    background: var(--warning);
+    border-color: var(--warning);
+    color: white;
+}
+
+/* Card Components */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Form Components */
+.form-input,
+.form-select,
+.form-textarea {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    border-radius: 6px;
+    padding: 0.75rem;
+    width: 100%;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+/* Status Indicators */
+.status-online {
+    color: var(--success);
+}
+
+.status-offline {
+    color: var(--text-secondary);
+}
+
+.status-error {
+    color: var(--danger);
+}
+
+.status-warning {
+    color: var(--warning);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* Utility Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Theme JavaScript Helper */
+/*
+// Add this JavaScript to any page to enable theme switching:
+
+function setTheme(themeName) {
+    // Remove all theme classes
+    document.body.classList.remove('theme-light', 'theme-blue', 'theme-purple', 'theme-emerald', 'theme-sunset');
+    
+    // Add new theme class (except for dark which is default)
+    if (themeName !== 'dark') {
+        document.body.classList.add(`theme-${themeName}`);
+    }
+
+    SAVE IN POSTGRESS USER PREFRENCE TABLE 
+    
+    // Save theme preference
+    localStorage.setItem('tusk-theme', themeName);
+    
+    // Update active theme indicator
+    document.querySelectorAll('.theme-option').forEach(option => {
+        option.classList.remove('active');
+    });
+    document.querySelector(`.theme-${themeName}`)?.classList.add('active');
+}
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem('tusk-theme') || 'dark';
+    setTheme(savedTheme);
+}
+
+// Initialize theme on page load
+document.addEventListener('DOMContentLoaded', loadTheme);
+*/

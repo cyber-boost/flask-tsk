@@ -37,6 +37,28 @@ except ImportError:
     PERFORMANCE_ENGINE_AVAILABLE = False
     logging.warning("Performance engine not available")
 
+# Elephant integration
+try:
+    from .elephants import init_elephant_herd, get_elephant_herd
+    from .elephant_routes import elephant_bp
+    from .elephant_showcase import init_elephant_showcase
+    
+    def init_elephants(app):
+        """Initialize elephant herd with Flask app"""
+        init_elephant_herd(app)
+        app.register_blueprint(elephant_bp)
+        init_elephant_showcase(app)
+        app.logger.info("🐘 Elephant integration complete!")
+    
+    ELEPHANTS_ENABLED = True
+except ImportError as e:
+    current_app.logger.warning(f"Elephants not available: {e}")
+    ELEPHANTS_ENABLED = False
+    
+    def init_elephants(app):
+        """Placeholder for elephant initialization"""
+        app.logger.info("Elephants not available - skipping initialization")
+
 
 class FlaskTSK:
     """Flask extension for TuskLang integration with FULL SDK capabilities"""

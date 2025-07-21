@@ -1,0 +1,303 @@
+# Babar - The Royal CMS
+# =====================
+# The King of Content Management in TuskPHP
+
+[metadata]
+elephant = "Babar"
+role = "CMS - Content Management System"
+created = "1931 (in literature), adapted for TuskPHP"
+specialty = "Hierarchical content organization, role-based access, multi-language support"
+
+[backstory]
+# Babar, created by Jean de Brunhoff in 1931, is perhaps the most famous
+# fictional elephant. After his mother was killed by hunters, young Babar
+# fled to the city where he was educated by the Old Lady. He returned to
+# the elephant kingdom wearing a green suit, bringing civilization and
+# modern ideas. He became king, built the city of Celesteville, and ruled
+# with wisdom and compassion, always balancing tradition with progress.
+#
+# In TuskPHP, Babar brings the same royal organization to content management,
+# transforming chaotic content into a well-structured kingdom.
+
+[purpose]
+# Like King Babar who brought order and civilization to the elephant kingdom,
+# this CMS brings structure and elegance to content management. Babar transformed
+# a jungle into a functioning society with rules, roles, and culture - exactly
+# what this CMS does for your content. Role-based access, organized hierarchies,
+# and civilized content management.
+
+[features]
+hierarchical_content = "Organize content like the kingdom of Celesteville"
+role_based_access = "King, Queen, Ministers, Citizens - each with their permissions"
+multi_language = "Babar spoke French! Support for multiple languages"
+version_control = "Keep meticulous records of all content changes"
+workflow_management = "Royal approval process for content publishing"
+rich_media = "Manage all types of content in the kingdom"
+seo_friendly = "URLs and metadata fit for a king"
+
+[methods]
+
+## Core Content Management
+
+### createStory($title, $content, $type = 'page')
+# Creates new content in the kingdom
+# Parameters:
+#   - $title: The story title
+#   - $content: The story content
+#   - $type: Type of content (page, post, etc.)
+# Returns: Array with story details
+# Throws: Exception if no permission to create
+
+### publish($storyId)
+# Publishes content with royal decree
+# Parameters:
+#   - $storyId: The ID of the story to publish
+# Returns: Boolean success
+# Throws: Exception if not King or Minister
+
+### getStory($storyId)
+# Retrieves a story from the kingdom archives
+# Parameters:
+#   - $storyId: The ID of the story
+# Returns: Story array or null
+
+### updateStory($storyId, $data)
+# Updates an existing story
+# Parameters:
+#   - $storyId: The ID of the story
+#   - $data: Updated story data
+# Returns: Updated story array
+
+### getLibrary($filters = [])
+# Lists all stories in the royal library
+# Parameters:
+#   - $filters: Array of filters (type, status, language)
+# Returns: Array of stories
+
+## Hierarchy Management
+
+### organize($childId, $parentId)
+# Organizes content into hierarchical structure
+# Parameters:
+#   - $childId: ID of child content
+#   - $parentId: ID of parent content
+# Returns: Boolean success
+# Throws: Exception if content doesn't exist
+
+### updateKingdomHierarchy()
+# Updates the overall kingdom content map
+# Internal method to refresh hierarchy cache
+
+## Role & Permission Management
+
+### appointRole($name, $permissions = [])
+# Creates new role in the kingdom
+# Parameters:
+#   - $name: Role name (admin, editor, author, etc.)
+#   - $permissions: Array of permissions
+# Returns: Role array with ceremonial title
+
+### hasPermission($action, $type = null)
+# Checks if current user has permission
+# Parameters:
+#   - $action: The action to check (create, publish, etc.)
+#   - $type: Optional content type
+# Returns: Boolean
+
+### getCeremonialTitle($role)
+# Gets the ceremonial title for a role
+# Role mappings:
+#   - admin: 'King of Celesteville'
+#   - editor: 'Royal Minister of Stories'
+#   - author: 'Court Storyteller'
+#   - contributor: 'Citizen of Celesteville'
+#   - guest: 'Visitor to the Kingdom'
+
+## Multi-Language Support
+
+### translate($storyId, $language, $translation)
+# Creates translation of content
+# Parameters:
+#   - $storyId: Original story ID
+#   - $language: Target language code
+#   - $translation: Array with title and content
+# Returns: Translated story array
+# Throws: Exception if language not supported
+
+### setDefaultLanguage($language)
+# Sets the default kingdom language
+# Parameters:
+#   - $language: Language code
+
+### addLanguage($code, $name)
+# Adds new language to the kingdom
+# Parameters:
+#   - $code: Language code
+#   - $name: Language name
+
+## Workflow Management
+
+### submitForApproval($storyId)
+# Submits content for royal approval
+# Parameters:
+#   - $storyId: Story to submit
+# Returns: Boolean success
+# Notifies ministers for review
+
+### approve($storyId, $notes = '')
+# Approves content for publication
+# Parameters:
+#   - $storyId: Story to approve
+#   - $notes: Approval notes
+# Returns: Boolean success
+
+### reject($storyId, $reason)
+# Rejects content with reason
+# Parameters:
+#   - $storyId: Story to reject
+#   - $reason: Rejection reason
+# Returns: Boolean success
+
+## Version Control
+
+### createVersion($story)
+# Creates new version of content
+# Private method called on updates
+# Maintains complete history
+
+### getVersionHistory($storyId)
+# Gets all versions of a story
+# Parameters:
+#   - $storyId: Story ID
+# Returns: Array of versions
+
+### restoreVersion($storyId, $version)
+# Restores specific version
+# Parameters:
+#   - $storyId: Story ID
+#   - $version: Version number
+# Returns: Restored story
+
+## Notification System
+
+### notifyMinisters($story)
+# Notifies ministers of pending approvals
+# Parameters:
+#   - $story: Story awaiting approval
+
+### announcePublication($story)
+# Announces new publication to kingdom
+# Parameters:
+#   - $story: Published story
+
+## Kingdom Management
+
+### initializeKingdom()
+# Sets up the kingdom structure
+# Creates initial roles and hierarchy
+# Private method called on construction
+
+### getKingdomStats()
+# Gets statistics about the kingdom
+# Returns: Array with content counts, user stats, etc.
+
+[usage_examples]
+
+## Basic Content Creation
+```php
+$babar = new Babar();
+$story = $babar->createStory(
+    'Welcome to Celesteville',
+    'A beautiful city where elephants live in harmony...',
+    'page'
+);
+```
+
+## Publishing with Workflow
+```php
+// Author creates story
+$story = $babar->createStory('New Adventures', 'Content...', 'post');
+
+// Submit for approval
+$babar->submitForApproval($story['id']);
+
+// Minister approves
+$babar->approve($story['id'], 'Excellent story!');
+
+// King publishes
+$babar->publish($story['id']);
+```
+
+## Organizing Content Hierarchy
+```php
+// Create parent page
+$parent = $babar->createStory('About Celesteville', 'Main page...', 'page');
+
+// Create child pages
+$history = $babar->createStory('History', 'The founding...', 'page');
+$culture = $babar->createStory('Culture', 'Our traditions...', 'page');
+
+// Organize hierarchy
+$babar->organize($history['id'], $parent['id']);
+$babar->organize($culture['id'], $parent['id']);
+```
+
+## Multi-Language Content
+```php
+// Create original in English
+$story = $babar->createStory('Royal Decree', 'Important news...', 'announcement');
+
+// Add French translation
+$babar->translate($story['id'], 'fr', [
+    'title' => 'Décret Royal',
+    'content' => 'Nouvelles importantes...'
+]);
+```
+
+## Role Management
+```php
+// Create custom role
+$babar->appointRole('royal_scribe', [
+    'create' => true,
+    'edit' => true,
+    'publish' => false,
+    'delete' => false
+]);
+
+// Check permissions
+if ($babar->hasPermission('publish')) {
+    $babar->publish($storyId);
+}
+```
+
+[integration]
+database = "TuskDb for content storage"
+cache = "Memory for performance"
+security = "TuskSafe for content sanitization"
+notifications = "Can integrate with Tantor for real-time updates"
+
+[configuration]
+# Example configuration in .tsk format
+[babar]
+default_language = "en"
+supported_languages = ["en", "fr", "es", "de"]
+approval_required = true
+version_limit = 10
+cache_ttl = 3600
+
+[babar.roles]
+admin = ["*"]
+editor = ["create", "edit", "publish", "translate"]
+author = ["create", "edit", "submit"]
+contributor = ["create", "submit"]
+
+[notes]
+# Babar is designed to be the central content management system for TuskPHP.
+# It provides everything needed for a modern CMS while maintaining the
+# whimsical elephant theme. The royal metaphors make the permission system
+# intuitive - everyone understands that a King has more power than a Citizen!
+#
+# The system is built with scalability in mind, using caching extensively
+# and providing hooks for extending functionality. Future enhancements could
+# include AI-powered content suggestions, advanced SEO tools, and integration
+# with other elephants like Happy for image management.

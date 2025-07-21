@@ -1,0 +1,551 @@
+/**
+ * 🐘 TuskPHP Happy Theme - Joy & User Experience
+ * ==============================================
+ * Inspired by Happy the elephant specialist for UI/UX
+ * Bright, cheerful design with delightful interactions
+ */
+
+:root {
+    /* Happy Color Palette - Bright & Cheerful */
+    --primary-color: #ff6b9d;
+    --primary-dark: #e55a88;
+    --secondary-color: #4ecdc4;
+    --secondary-dark: #45b7aa;
+    --accent-color: #ffe66d;
+    --accent-dark: #ffdd44;
+    --tertiary-color: #a8e6cf;
+    --tertiary-dark: #88c9aa;
+    
+    /* Joy Colors */
+    --joy-pink: #ff9a9e;
+    --joy-blue: #a18cd1;
+    --joy-yellow: #ffecd2;
+    --joy-green: #c1fba4;
+    --joy-orange: #fad0c4;
+    --joy-purple: #d299c2;
+    
+    /* Background Colors */
+    --bg-primary: #fefffe;
+    --bg-secondary: #f8fafc;
+    --bg-accent: #fff5f8;
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-muted: #718096;
+    --text-light: #ffffff;
+    
+    /* Gradients */
+    --gradient-joy: linear-gradient(135deg, var(--joy-pink) 0%, var(--joy-blue) 100%);
+    --gradient-sunset: linear-gradient(135deg, var(--joy-orange) 0%, var(--joy-yellow) 100%);
+    --gradient-nature: linear-gradient(135deg, var(--joy-green) 0%, var(--tertiary-color) 100%);
+    --gradient-rainbow: linear-gradient(135deg, var(--joy-pink) 0%, var(--joy-yellow) 25%, var(--joy-green) 50%, var(--joy-blue) 75%, var(--joy-purple) 100%);
+    
+    /* Typography */
+    --font-primary: 'Poppins', 'Segoe UI', sans-serif;
+    --font-secondary: 'Comic Neue', cursive;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Spacing & Sizing */
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
+    --border-radius-lg: 24px;
+    --shadow-happy: 0 4px 20px rgba(255, 107, 157, 0.15);
+    --shadow-joy: 0 8px 30px rgba(255, 107, 157, 0.25);
+    
+    /* Animations */
+    --bounce-duration: 0.6s;
+    --wiggle-duration: 0.8s;
+    --float-duration: 3s;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-primary);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Happy Buttons */
+.btn-happy {
+    background: var(--gradient-joy);
+    border: none;
+    color: var(--text-light);
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-happy);
+}
+
+.btn-happy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-happy:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-joy);
+    color: var(--text-light);
+}
+
+.btn-happy:hover::before {
+    left: 100%;
+}
+
+.btn-happy:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.btn-happy-sunset {
+    background: var(--gradient-sunset);
+}
+
+.btn-happy-nature {
+    background: var(--gradient-nature);
+}
+
+.btn-happy-rainbow {
+    background: var(--gradient-rainbow);
+    animation: rainbow-shift 3s linear infinite;
+}
+
+@keyframes rainbow-shift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Joyful Cards */
+.card-happy {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-happy);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+}
+
+.card-happy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-rainbow);
+}
+
+.card-happy:hover {
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: var(--shadow-joy);
+}
+
+.card-happy-joy {
+    background: var(--bg-accent);
+}
+
+.card-happy-joy::before {
+    background: var(--gradient-joy);
+}
+
+.card-happy-nature::before {
+    background: var(--gradient-nature);
+}
+
+.card-happy-sunset::before {
+    background: var(--gradient-sunset);
+}
+
+.card-happy-body {
+    padding: 2rem;
+}
+
+.card-happy-header {
+    background: var(--gradient-joy);
+    color: var(--text-light);
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    position: relative;
+}
+
+.card-happy-header::after {
+    content: '✨';
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.2); }
+}
+
+/* Happy Navigation */
+.navbar-happy {
+    background: var(--bg-primary);
+    box-shadow: var(--shadow-happy);
+    border-bottom: 3px solid transparent;
+    background-image: linear-gradient(var(--bg-primary), var(--bg-primary)), var(--gradient-rainbow);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: 1rem 0;
+}
+
+.navbar-happy .navbar-brand {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-happy .navbar-brand::before {
+    content: '🐘';
+    font-size: 1.8rem;
+    animation: bounce var(--bounce-duration) ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.navbar-happy .nav-link {
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-happy .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-joy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-happy .nav-link:hover,
+.navbar-happy .nav-link.active {
+    color: var(--primary-color);
+    background: rgba(255, 107, 157, 0.1);
+}
+
+.navbar-happy .nav-link:hover::after,
+.navbar-happy .nav-link.active::after {
+    width: 80%;
+}
+
+/* Delightful Forms */
+.form-group-happy {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-label-happy {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.form-control-happy {
+    background: var(--bg-secondary);
+    border: 2px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+}
+
+.form-control-happy:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+    background: var(--bg-primary);
+}
+
+.form-control-happy:focus + .form-icon-happy {
+    color: var(--primary-color);
+    animation: wiggle var(--wiggle-duration) ease-in-out;
+}
+
+@keyframes wiggle {
+    0%, 7%, 14%, 21%, 28%, 35%, 42%, 49%, 56%, 63%, 70%, 77%, 84%, 91%, 98%, 100% { transform: rotate(0deg); }
+    3.5%, 10.5%, 17.5%, 24.5%, 31.5%, 38.5%, 45.5%, 52.5%, 59.5%, 66.5%, 73.5%, 80.5%, 87.5%, 94.5% { transform: rotate(2deg); }
+}
+
+.form-icon-happy {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+/* Notification Toasts */
+.toast-happy {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-joy);
+    border: none;
+    padding: 1rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast-happy::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.toast-happy-success::before {
+    background: var(--joy-green);
+}
+
+.toast-happy-error::before {
+    background: var(--joy-pink);
+}
+
+.toast-happy-warning::before {
+    background: var(--joy-yellow);
+}
+
+.toast-happy-info::before {
+    background: var(--joy-blue);
+}
+
+.toast-happy-body {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toast-happy-icon {
+    font-size: 1.5rem;
+    animation: bounce var(--bounce-duration) ease-in-out infinite;
+}
+
+/* Progress Bars */
+.progress-happy {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    height: 12px;
+    position: relative;
+}
+
+.progress-bar-happy {
+    height: 100%;
+    background: var(--gradient-joy);
+    border-radius: var(--border-radius);
+    transition: width 0.6s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-happy::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Happy Tables */
+.table-happy {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-happy);
+}
+
+.table-happy thead {
+    background: var(--gradient-joy);
+    color: var(--text-light);
+}
+
+.table-happy th {
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    position: relative;
+}
+
+.table-happy th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.table-happy td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.table-happy tbody tr:hover {
+    background: var(--bg-accent);
+    transform: scale(1.01);
+}
+
+/* Emoji Decorations */
+.emoji-float {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: float var(--float-duration) ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(5deg); }
+    66% { transform: translateY(-20px) rotate(-5deg); }
+}
+
+.emoji-float:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.emoji-float:nth-child(2) { top: 20%; right: 15%; animation-delay: 0.5s; }
+.emoji-float:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 1s; }
+.emoji-float:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 1.5s; }
+
+/* Loading Spinner */
+.spinner-happy {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 107, 157, 0.2);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.spinner-happy::after {
+    content: '😊';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Happy Footer */
+.footer-happy {
+    background: var(--gradient-sunset);
+    color: var(--text-primary);
+    padding: 3rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-happy::before {
+    content: '🌈';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-happy:hover {
+        transform: translateY(-4px);
+    }
+    
+    .btn-happy {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .emoji-float {
+        font-size: 1.5rem;
+    }
+    
+    .navbar-happy .navbar-brand {
+        font-size: 1.3rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #1a202c;
+        --bg-secondary: #2d3748;
+        --bg-accent: #2d1b2e;
+        --text-primary: #f7fafc;
+        --text-secondary: #e2e8f0;
+        --text-muted: #a0aec0;
+    }
+    
+    .card-happy {
+        background: var(--bg-secondary);
+    }
+    
+    .table-happy {
+        background: var(--bg-secondary);
+    }
+}

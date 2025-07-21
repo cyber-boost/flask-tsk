@@ -1,0 +1,502 @@
+/**
+ * 🐘 TuskPHP 90s Theme - Radical Retro Vibes
+ * ==========================================
+ * Totally tubular 90s nostalgia with neon colors and radical styling
+ */
+
+:root {
+    /* 90s Color Palette - Radical & Neon */
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --neon-green: #00ff00;
+    --neon-yellow: #ffff00;
+    --electric-blue: #0080ff;
+    --hot-pink: #ff1493;
+    --lime-green: #32cd32;
+    --purple-haze: #9932cc;
+    
+    /* Classic 90s Colors */
+    --teal-90s: #008080;
+    --coral-90s: #ff7f50;
+    --gold-90s: #ffd700;
+    --silver-90s: #c0c0c0;
+    
+    /* Background Colors */
+    --bg-primary: #000080; /* Navy blue background */
+    --bg-secondary: #800080; /* Purple background */
+    --bg-pattern: #4b0082; /* Indigo for patterns */
+    --text-primary: #ffffff;
+    --text-secondary: #ffff00;
+    --text-accent: #00ffff;
+    
+    /* Gradients */
+    --gradient-radical: linear-gradient(45deg, var(--neon-pink), var(--neon-cyan), var(--neon-green));
+    --gradient-sunset: linear-gradient(90deg, var(--hot-pink), var(--neon-yellow), var(--electric-blue));
+    --gradient-cosmic: linear-gradient(135deg, var(--purple-haze), var(--electric-blue), var(--neon-cyan));
+    --gradient-chrome: linear-gradient(45deg, #c0c0c0, #ffffff, #c0c0c0, #a0a0a0);
+    
+    /* Typography */
+    --font-90s: 'Courier New', 'MS Sans Serif', monospace;
+    --font-title: 'Impact', 'Arial Black', sans-serif;
+    --font-body: 'Arial', 'Helvetica', sans-serif;
+    
+    /* Retro Effects */
+    --text-shadow-neon: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+    --box-shadow-retro: 5px 5px 0px #000000;
+    --border-90s: 3px solid #ffffff;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-90s);
+    background: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 25% 25%, var(--neon-pink) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, var(--neon-cyan) 0%, transparent 50%),
+        linear-gradient(45deg, var(--bg-primary) 25%, var(--bg-secondary) 25%, var(--bg-secondary) 50%, var(--bg-primary) 50%);
+    background-size: 100px 100px, 100px 100px, 40px 40px;
+    color: var(--text-primary);
+    line-height: 1.4;
+    min-height: 100vh;
+    animation: backgroundShift 10s infinite linear;
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0 0, 0 0, 0 0; }
+    100% { background-position: 100px 100px, -100px -100px, 40px 40px; }
+}
+
+/* Radical Headers */
+.header-90s {
+    background: var(--gradient-radical);
+    color: var(--text-primary);
+    text-align: center;
+    padding: 2rem;
+    border: var(--border-90s);
+    border-radius: 0;
+    box-shadow: var(--box-shadow-retro);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-90s::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: scanLine 2s infinite linear;
+}
+
+@keyframes scanLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.title-90s {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: var(--text-shadow-neon);
+    margin: 0;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 5px var(--neon-cyan); }
+    to { text-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink); }
+}
+
+/* Tubular Buttons */
+.btn-90s {
+    background: var(--gradient-sunset);
+    border: var(--border-90s);
+    color: var(--text-primary);
+    padding: 15px 30px;
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: var(--box-shadow-retro);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-90s::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-90s:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000000;
+    color: var(--text-primary);
+}
+
+.btn-90s:hover::before {
+    left: 100%;
+}
+
+.btn-90s:active {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0px #000000;
+}
+
+.btn-90s-neon {
+    background: var(--neon-pink);
+    color: #000000;
+    text-shadow: none;
+    animation: neonPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from { box-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 5px 5px 0px #000000; }
+    to { box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink), 5px 5px 0px #000000; }
+}
+
+/* Radical Cards */
+.card-90s {
+    background: var(--bg-secondary);
+    border: var(--border-90s);
+    box-shadow: var(--box-shadow-retro);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-90s::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-radical);
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.card-90s:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px #000000;
+}
+
+.card-90s-header {
+    background: var(--gradient-chrome);
+    color: #000000;
+    padding: 1rem;
+    margin: -1.5rem -1.5rem 1rem -1.5rem;
+    font-family: var(--font-title);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Awesome Navigation */
+.navbar-90s {
+    background: var(--bg-pattern);
+    border-bottom: 5px solid var(--neon-cyan);
+    padding: 1rem 0;
+    position: relative;
+}
+
+.navbar-90s::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.1) 10px,
+        rgba(255, 255, 255, 0.1) 20px
+    );
+    pointer-events: none;
+}
+
+.navbar-90s .navbar-brand {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--neon-yellow);
+    text-shadow: var(--text-shadow-neon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar-90s .nav-link {
+    color: var(--neon-cyan);
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.navbar-90s .nav-link:hover,
+.navbar-90s .nav-link.active {
+    background: var(--neon-pink);
+    color: #000000;
+    border-color: var(--neon-yellow);
+    text-shadow: none;
+    animation: textFlicker 0.5s ease-in-out;
+}
+
+@keyframes textFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Retro Forms */
+.form-control-90s {
+    background: #000000;
+    border: 3px solid var(--neon-cyan);
+    color: var(--neon-green);
+    padding: 12px 15px;
+    font-family: var(--font-90s);
+    font-size: 1rem;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.form-control-90s:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px var(--neon-pink), inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+    color: var(--neon-yellow);
+}
+
+.form-control-90s::placeholder {
+    color: var(--silver-90s);
+    font-style: italic;
+}
+
+.form-label-90s {
+    color: var(--neon-yellow);
+    font-family: var(--font-title);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Radical Tables */
+.table-90s {
+    background: #000000;
+    border: var(--border-90s);
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: var(--box-shadow-retro);
+}
+
+.table-90s thead {
+    background: var(--gradient-cosmic);
+}
+
+.table-90s th {
+    color: var(--text-primary);
+    font-family: var(--font-title);
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 15px;
+    border-bottom: 3px solid var(--neon-cyan);
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.table-90s td {
+    color: var(--neon-green);
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--teal-90s);
+    font-family: var(--font-90s);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.table-90s tbody tr:hover {
+    background: var(--purple-haze);
+    color: var(--text-primary);
+}
+
+.table-90s tbody tr:hover td {
+    color: var(--text-primary);
+    text-shadow: 1px 1px 2px #000000;
+}
+
+/* Totally Cool Alerts */
+.alert-90s {
+    border: var(--border-90s);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    font-family: var(--font-90s);
+    font-weight: 700;
+    position: relative;
+    animation: alertGlow 2s ease-in-out infinite alternate;
+}
+
+.alert-90s-success {
+    background: var(--lime-green);
+    color: #000000;
+    box-shadow: 0 0 15px var(--lime-green), var(--box-shadow-retro);
+}
+
+.alert-90s-error {
+    background: var(--hot-pink);
+    color: #ffffff;
+    box-shadow: 0 0 15px var(--hot-pink), var(--box-shadow-retro);
+}
+
+.alert-90s-warning {
+    background: var(--neon-yellow);
+    color: #000000;
+    box-shadow: 0 0 15px var(--neon-yellow), var(--box-shadow-retro);
+}
+
+.alert-90s-info {
+    background: var(--neon-cyan);
+    color: #000000;
+    box-shadow: 0 0 15px var(--neon-cyan), var(--box-shadow-retro);
+}
+
+@keyframes alertGlow {
+    from { box-shadow: 0 0 5px currentColor, var(--box-shadow-retro); }
+    to { box-shadow: 0 0 20px currentColor, var(--box-shadow-retro); }
+}
+
+/* Radical Footer */
+.footer-90s {
+    background: var(--gradient-cosmic);
+    color: var(--text-primary);
+    padding: 2rem;
+    border-top: 5px solid var(--neon-pink);
+    text-align: center;
+    position: relative;
+    margin-top: 3rem;
+}
+
+.footer-90s::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-radical);
+    animation: borderRace 3s linear infinite;
+}
+
+@keyframes borderRace {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border: 2px solid var(--neon-cyan);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-sunset);
+    border: 2px solid var(--neon-pink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-radical);
+}
+
+/* Animations */
+.spin-90s {
+    animation: spin90s 2s linear infinite;
+}
+
+@keyframes spin90s {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.flash-90s {
+    animation: flash90s 1s ease-in-out infinite alternate;
+}
+
+@keyframes flash90s {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+.bounce-90s {
+    animation: bounce90s 1s ease-in-out infinite;
+}
+
+@keyframes bounce90s {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title-90s {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .btn-90s {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .card-90s {
+        padding: 1rem;
+    }
+    
+    body {
+        background-size: 50px 50px, 50px 50px, 20px 20px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .card-90s,
+    .btn-90s,
+    .alert-90s {
+        border: 2px solid black;
+        box-shadow: none;
+        background: white;
+        color: black;
+    }
+}

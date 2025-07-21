@@ -1,0 +1,772 @@
+/**
+ * 🐘 TuskPHP Horton Theme - Job Queue & Task Management
+ * ===================================================
+ * Inspired by Horton the job queue elephant specialist
+ * Workflow-focused design with task management aesthetics
+ */
+
+:root {
+    /* Horton Color Palette - Job Queue & Workflow */
+    --queue-blue: #2563eb;
+    --queue-blue-light: #3b82f6;
+    --queue-blue-dark: #1d4ed8;
+    --task-green: #16a34a;
+    --task-green-light: #22c55e;
+    --task-green-dark: #15803d;
+    
+    /* Process Colors */
+    --process-purple: #9333ea;
+    --process-purple-light: #a855f7;
+    --process-purple-dark: #7c2d12;
+    --worker-orange: #ea580c;
+    --worker-orange-light: #f97316;
+    --worker-orange-dark: #c2410c;
+    
+    /* Status Colors */
+    --status-pending: #64748b;
+    --status-running: var(--queue-blue);
+    --status-completed: var(--task-green);
+    --status-failed: #dc2626;
+    --status-retrying: var(--worker-orange);
+    --status-paused: #6b7280;
+    
+    /* Background Colors */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --bg-dashboard: #0f172a;
+    --bg-accent: #e2e8f0;
+    --bg-overlay: rgba(248, 250, 252, 0.95);
+    
+    /* Text Colors */
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --text-white: #ffffff;
+    --text-dashboard: #e2e8f0;
+    
+    /* Typography */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-queue: 0 0 0 1px rgba(37, 99, 235, 0.1), 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+    
+    /* Gradients */
+    --gradient-queue: linear-gradient(135deg, var(--queue-blue) 0%, var(--process-purple) 100%);
+    --gradient-task: linear-gradient(135deg, var(--task-green) 0%, var(--queue-blue) 100%);
+    --gradient-worker: linear-gradient(135deg, var(--worker-orange) 0%, var(--process-purple) 100%);
+    --gradient-dashboard: linear-gradient(135deg, var(--bg-dashboard) 0%, #1e293b 100%);
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Progress Bar Heights */
+    --progress-sm: 4px;
+    --progress-md: 8px;
+    --progress-lg: 12px;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Queue Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 2.25rem;
+    color: var(--queue-blue);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+h1::before {
+    content: '⚡';
+    font-size: 2rem;
+    animation: jobPulse 2s infinite;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -var(--space-2);
+    left: 0;
+    width: 120px;
+    height: 3px;
+    background: var(--gradient-queue);
+}
+
+@keyframes jobPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+h2 {
+    font-size: 1.875rem;
+    color: var(--process-purple);
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--task-green);
+}
+
+/* Job Queue Buttons */
+.btn-horton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-5);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-horton-queue {
+    background: var(--gradient-queue);
+    color: var(--text-white);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-horton-queue:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-white);
+    text-decoration: none;
+}
+
+.btn-horton-queue::before {
+    content: '📋';
+    font-size: 1rem;
+}
+
+.btn-horton-task {
+    background: var(--gradient-task);
+    color: var(--text-white);
+}
+
+.btn-horton-task:hover {
+    color: var(--text-white);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-horton-task::before {
+    content: '✓';
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-horton-worker {
+    background: var(--gradient-worker);
+    color: var(--text-white);
+}
+
+.btn-horton-worker:hover {
+    color: var(--text-white);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-horton-worker::before {
+    content: '👷';
+    font-size: 1rem;
+}
+
+.btn-horton-outline {
+    background: transparent;
+    color: var(--queue-blue);
+    border-color: var(--queue-blue);
+}
+
+.btn-horton-outline:hover {
+    background: var(--queue-blue);
+    color: var(--text-white);
+    text-decoration: none;
+}
+
+/* Job Status Indicators */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-indicator::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: statusPulse 2s infinite;
+}
+
+.status-pending {
+    background: rgba(100, 116, 139, 0.1);
+    color: var(--status-pending);
+    border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.status-pending::before {
+    background: var(--status-pending);
+}
+
+.status-running {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--status-running);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.status-running::before {
+    background: var(--status-running);
+    animation: statusPulse 1s infinite;
+}
+
+.status-completed {
+    background: rgba(22, 163, 74, 0.1);
+    color: var(--status-completed);
+    border: 1px solid rgba(22, 163, 74, 0.2);
+}
+
+.status-completed::before {
+    background: var(--status-completed);
+    animation: none;
+}
+
+.status-failed {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--status-failed);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.status-failed::before {
+    background: var(--status-failed);
+    animation: statusBlink 0.5s infinite;
+}
+
+.status-retrying {
+    background: rgba(234, 88, 12, 0.1);
+    color: var(--status-retrying);
+    border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.status-retrying::before {
+    background: var(--status-retrying);
+    animation: statusSpin 1s linear infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes statusSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Progress Bars */
+.progress-horton {
+    background: var(--bg-accent);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    height: var(--progress-md);
+    margin: var(--space-2) 0;
+}
+
+.progress-bar-horton {
+    height: 100%;
+    background: var(--gradient-queue);
+    border-radius: inherit;
+    transition: width var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-horton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Job Queue Cards */
+.card-horton {
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-accent);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: var(--space-6);
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.card-horton:hover {
+    border-color: var(--queue-blue);
+    box-shadow: var(--shadow-queue);
+    transform: translateY(-2px);
+}
+
+.card-horton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-queue);
+}
+
+.card-horton-header {
+    background: var(--bg-tertiary);
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--bg-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-horton-header h3 {
+    margin: 0;
+    color: var(--queue-blue);
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.card-horton-header h3::before {
+    content: '🔄';
+    font-size: 1rem;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.card-horton-body {
+    padding: var(--space-6);
+}
+
+.card-horton-footer {
+    background: var(--bg-tertiary);
+    padding: var(--space-4);
+    border-top: 1px solid var(--bg-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Job Queue Navigation */
+.navbar-horton {
+    background: var(--bg-overlay);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--bg-accent);
+    padding: var(--space-4) 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-horton .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.navbar-horton .navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--queue-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.navbar-horton .navbar-brand::before {
+    content: '🐘';
+    font-size: 1.5rem;
+    animation: elephantWalk 3s ease-in-out infinite;
+}
+
+@keyframes elephantWalk {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-2px) rotate(2deg); }
+}
+
+.navbar-horton .navbar-brand::after {
+    content: 'Queue Manager';
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.navbar-horton .navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--space-2);
+}
+
+.navbar-horton .nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.navbar-horton .nav-link:hover,
+.navbar-horton .nav-link.active {
+    background: var(--bg-tertiary);
+    color: var(--queue-blue);
+    text-decoration: none;
+}
+
+/* Job Queue Tables */
+.table-horton {
+    width: 100%;
+    background: var(--bg-secondary);
+    border-collapse: collapse;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+}
+
+.table-horton thead {
+    background: var(--gradient-queue);
+    color: var(--text-white);
+}
+
+.table-horton th {
+    padding: var(--space-4);
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--bg-accent);
+    position: relative;
+}
+
+.table-horton th::after {
+    content: attr(data-sort);
+    position: absolute;
+    right: var(--space-2);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.table-horton td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--bg-accent);
+    color: var(--text-secondary);
+    vertical-align: middle;
+}
+
+.table-horton tbody tr:hover {
+    background: var(--bg-tertiary);
+}
+
+.table-horton .job-id {
+    font-family: var(--font-mono);
+    color: var(--queue-blue);
+    font-weight: 600;
+}
+
+.table-horton .job-name {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.table-horton .job-duration {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+/* Dashboard Widgets */
+.dashboard-horton {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0;
+}
+
+.widget-horton {
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-accent);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    text-align: center;
+    position: relative;
+    transition: all var(--transition-normal);
+}
+
+.widget-horton:hover {
+    border-color: var(--queue-blue);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.widget-horton-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-2);
+}
+
+.widget-horton-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.widget-queue .widget-horton-value {
+    color: var(--queue-blue);
+}
+
+.widget-tasks .widget-horton-value {
+    color: var(--task-green);
+}
+
+.widget-workers .widget-horton-value {
+    color: var(--worker-orange);
+}
+
+.widget-failed .widget-horton-value {
+    color: var(--status-failed);
+}
+
+/* Job Queue Footer */
+.footer-horton {
+    background: var(--gradient-dashboard);
+    color: var(--text-white);
+    padding: var(--space-12) 0 var(--space-8);
+    margin-top: var(--space-16);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-horton::before {
+    content: '⚙️ ⚡ 🔄 ⚙️ ⚡ 🔄 ⚙️';
+    position: absolute;
+    top: var(--space-4);
+    left: 0;
+    right: 0;
+    font-size: 1.5rem;
+    opacity: 0.1;
+    text-align: center;
+    animation: gearRotation 20s linear infinite;
+}
+
+@keyframes gearRotation {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.footer-horton .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    position: relative;
+    z-index: 2;
+}
+
+.footer-horton .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.footer-horton .footer-section h5 {
+    color: var(--queue-blue-light);
+    margin-bottom: var(--space-4);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.footer-horton .footer-section h5::before {
+    content: '📊';
+    font-size: 1rem;
+}
+
+.footer-horton .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-horton .footer-section li {
+    margin-bottom: var(--space-2);
+}
+
+.footer-horton .footer-section a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+}
+
+.footer-horton .footer-section a:hover {
+    color: var(--queue-blue-light);
+}
+
+.footer-horton .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: var(--space-6);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-queue);
+    border-radius: var(--radius-lg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-worker);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-horton .container {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    
+    .navbar-horton .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--space-1);
+    }
+    
+    .footer-horton .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .dashboard-horton {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-horton {
+        font-size: 0.75rem;
+    }
+    
+    .table-horton th,
+    .table-horton td {
+        padding: var(--space-2) var(--space-3);
+    }
+    
+    .widget-horton-value {
+        font-size: 2rem;
+    }
+}

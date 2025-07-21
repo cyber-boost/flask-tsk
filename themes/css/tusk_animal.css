@@ -1,0 +1,697 @@
+/**
+ * 🐘 TuskPHP Animal Theme - Wild Safari Adventures
+ * ================================================
+ * Nature-inspired design with animal patterns and earthy tones
+ */
+
+:root {
+    /* Animal Color Palette - Nature & Safari Inspired */
+    --safari-brown: #8b4513;
+    --safari-tan: #d2b48c;
+    --safari-olive: #6b8e23;
+    --safari-green: #228b22;
+    --safari-gold: #daa520;
+    --safari-orange: #ff8c00;
+    
+    /* Elephant Colors */
+    --elephant-gray: #696969;
+    --elephant-dark: #2f4f4f;
+    --elephant-light: #d3d3d3;
+    --elephant-ivory: #fffff0;
+    
+    /* Nature Colors */
+    --forest-green: #228b22;
+    --leaf-green: #32cd32;
+    --bark-brown: #8b4513;
+    --earth-brown: #a0522d;
+    --sand-beige: #f5deb3;
+    --sunset-orange: #ff7f50;
+    --sky-blue: #87ceeb;
+    
+    /* Animal Print Patterns */
+    --zebra-black: #000000;
+    --zebra-white: #ffffff;
+    --leopard-gold: #ffd700;
+    --leopard-brown: #8b4513;
+    --tiger-orange: #ff8c00;
+    --tiger-black: #000000;
+    
+    /* Background Colors */
+    --bg-primary: var(--sand-beige);
+    --bg-secondary: var(--elephant-ivory);
+    --bg-accent: #faf0e6;
+    --text-primary: var(--elephant-dark);
+    --text-secondary: var(--safari-brown);
+    --text-muted: var(--elephant-gray);
+    --text-light: var(--elephant-ivory);
+    
+    /* Gradients */
+    --gradient-safari: linear-gradient(135deg, var(--safari-gold) 0%, var(--safari-orange) 100%);
+    --gradient-forest: linear-gradient(135deg, var(--forest-green) 0%, var(--leaf-green) 100%);
+    --gradient-earth: linear-gradient(135deg, var(--earth-brown) 0%, var(--bark-brown) 100%);
+    --gradient-sunset: linear-gradient(135deg, var(--sunset-orange) 0%, var(--safari-gold) 100%);
+    
+    /* Typography */
+    --font-primary: 'Georgia', 'Times New Roman', serif;
+    --font-secondary: 'Trebuchet MS', 'Arial', sans-serif;
+    --font-mono: 'Courier New', monospace;
+    
+    /* Shadows */
+    --shadow-natural: 0 4px 8px rgba(139, 69, 19, 0.15);
+    --shadow-deep: 0 8px 16px rgba(139, 69, 19, 0.25);
+    --shadow-inset: inset 0 2px 4px rgba(139, 69, 19, 0.1);
+    
+    /* Border Radius */
+    --radius-natural: 12px;
+    --radius-organic: 16px;
+    --radius-smooth: 8px;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-secondary);
+    background: var(--bg-primary);
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(34, 139, 34, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Animal Print Patterns */
+.pattern-zebra {
+    background: repeating-linear-gradient(
+        45deg,
+        var(--zebra-black),
+        var(--zebra-black) 10px,
+        var(--zebra-white) 10px,
+        var(--zebra-white) 20px
+    );
+}
+
+.pattern-leopard {
+    background-color: var(--leopard-gold);
+    background-image: 
+        radial-gradient(circle at 20% 20%, var(--leopard-brown) 0%, var(--leopard-brown) 30%, transparent 30%),
+        radial-gradient(circle at 60% 40%, var(--leopard-brown) 0%, var(--leopard-brown) 25%, transparent 25%),
+        radial-gradient(circle at 80% 80%, var(--leopard-brown) 0%, var(--leopard-brown) 35%, transparent 35%);
+    background-size: 50px 50px, 60px 60px, 40px 40px;
+}
+
+.pattern-tiger {
+    background: var(--tiger-orange);
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--tiger-black) 0px,
+        var(--tiger-black) 5px,
+        transparent 5px,
+        transparent 25px
+    );
+}
+
+/* Safari Headers */
+.header-animal {
+    background: var(--gradient-safari);
+    color: var(--text-light);
+    padding: var(--space-2xl);
+    border-radius: 0 0 var(--radius-organic) var(--radius-organic);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.header-animal::before {
+    content: '🐘 🦁 🦒 🐆 🦓 🦏 🐊 🦘';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: animalMarch 20s linear infinite;
+}
+
+@keyframes animalMarch {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.title-animal {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.subtitle-animal {
+    font-size: 1.2rem;
+    margin: var(--space-md) 0 0 0;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+}
+
+/* Wild Buttons */
+.btn-animal {
+    background: var(--gradient-earth);
+    border: 3px solid var(--bark-brown);
+    color: var(--text-light);
+    padding: 12px 24px;
+    border-radius: var(--radius-natural);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-natural);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-animal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-animal:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-deep);
+    color: var(--text-light);
+}
+
+.btn-animal:hover::before {
+    left: 100%;
+}
+
+.btn-animal:active {
+    transform: translateY(0) scale(1);
+}
+
+.btn-animal-safari {
+    background: var(--gradient-safari);
+    border-color: var(--safari-orange);
+}
+
+.btn-animal-forest {
+    background: var(--gradient-forest);
+    border-color: var(--forest-green);
+}
+
+.btn-animal-sunset {
+    background: var(--gradient-sunset);
+    border-color: var(--sunset-orange);
+}
+
+.btn-animal-paw {
+    position: relative;
+}
+
+.btn-animal-paw::after {
+    content: '🐾';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    font-size: 0.8rem;
+    animation: pawPrint 2s ease-in-out infinite;
+}
+
+@keyframes pawPrint {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Animal Cards */
+.card-animal {
+    background: var(--bg-secondary);
+    border: 2px solid var(--safari-tan);
+    border-radius: var(--radius-organic);
+    box-shadow: var(--shadow-natural);
+    margin: var(--space-lg) 0;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card-animal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-safari);
+}
+
+.card-animal:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-deep);
+    border-color: var(--safari-orange);
+}
+
+.card-animal-header {
+    background: var(--gradient-earth);
+    color: var(--text-light);
+    padding: var(--space-lg);
+    position: relative;
+}
+
+.card-animal-header::after {
+    content: '🌿';
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-lg);
+    font-size: 1.5rem;
+    animation: leafSway 3s ease-in-out infinite;
+}
+
+@keyframes leafSway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.card-animal-header h3 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    color: var(--text-light);
+}
+
+.card-animal-body {
+    padding: var(--space-xl);
+    position: relative;
+}
+
+.card-animal-footer {
+    background: var(--bg-accent);
+    padding: var(--space-lg);
+    border-top: 1px solid var(--safari-tan);
+    text-align: right;
+}
+
+/* Safari Navigation */
+.navbar-animal {
+    background: var(--bg-secondary);
+    border-bottom: 3px solid var(--safari-brown);
+    padding: var(--space-lg) 0;
+    box-shadow: var(--shadow-natural);
+    position: relative;
+}
+
+.navbar-animal::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-safari);
+}
+
+.navbar-animal .navbar-brand {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--safari-brown);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.navbar-animal .navbar-brand::before {
+    content: '🐘';
+    font-size: 2rem;
+    animation: elephantBob 2s ease-in-out infinite;
+}
+
+@keyframes elephantBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.navbar-animal .nav-link {
+    color: var(--text-secondary);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-natural);
+    transition: all 0.3s ease;
+    position: relative;
+    text-decoration: none;
+}
+
+.navbar-animal .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-safari);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-animal .nav-link:hover,
+.navbar-animal .nav-link.active {
+    background: rgba(139, 69, 19, 0.1);
+    color: var(--safari-brown);
+}
+
+.navbar-animal .nav-link:hover::after,
+.navbar-animal .nav-link.active::after {
+    width: 80%;
+}
+
+/* Wild Forms */
+.form-group-animal {
+    margin-bottom: var(--space-lg);
+    position: relative;
+}
+
+.form-label-animal {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+.form-control-animal {
+    background: var(--bg-secondary);
+    border: 2px solid var(--safari-tan);
+    border-radius: var(--radius-natural);
+    padding: var(--space-md);
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    width: 100%;
+    font-family: var(--font-secondary);
+}
+
+.form-control-animal:focus {
+    outline: none;
+    border-color: var(--safari-orange);
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+    background: var(--elephant-ivory);
+}
+
+.form-control-animal::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Animal Tables */
+.table-animal {
+    background: var(--bg-secondary);
+    border: 2px solid var(--safari-tan);
+    border-radius: var(--radius-organic);
+    overflow: hidden;
+    box-shadow: var(--shadow-natural);
+    margin: var(--space-lg) 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-animal thead {
+    background: var(--gradient-earth);
+    color: var(--text-light);
+}
+
+.table-animal th {
+    padding: var(--space-lg);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    text-align: left;
+    border-bottom: 2px solid var(--safari-brown);
+    position: relative;
+}
+
+.table-animal th::after {
+    content: '🌿';
+    position: absolute;
+    right: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.table-animal td {
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--safari-tan);
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.table-animal tbody tr:hover {
+    background: var(--bg-accent);
+}
+
+.table-animal tbody tr:hover td {
+    color: var(--safari-brown);
+}
+
+/* Nature Alerts */
+.alert-animal {
+    border: 2px solid;
+    border-radius: var(--radius-natural);
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0;
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.alert-animal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+}
+
+.alert-animal-success {
+    background: rgba(34, 139, 34, 0.1);
+    border-color: var(--forest-green);
+    color: var(--forest-green);
+}
+
+.alert-animal-success::before {
+    background: var(--forest-green);
+}
+
+.alert-animal-success::after {
+    content: '🌱';
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+.alert-animal-warning {
+    background: rgba(255, 140, 0, 0.1);
+    border-color: var(--safari-orange);
+    color: var(--safari-brown);
+}
+
+.alert-animal-warning::before {
+    background: var(--safari-orange);
+}
+
+.alert-animal-warning::after {
+    content: '⚠️';
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+.alert-animal-error {
+    background: rgba(255, 127, 80, 0.1);
+    border-color: var(--sunset-orange);
+    color: var(--earth-brown);
+}
+
+.alert-animal-error::before {
+    background: var(--sunset-orange);
+}
+
+.alert-animal-error::after {
+    content: '🚨';
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+.alert-animal-info {
+    background: rgba(135, 206, 235, 0.1);
+    border-color: var(--sky-blue);
+    color: var(--elephant-dark);
+}
+
+.alert-animal-info::before {
+    background: var(--sky-blue);
+}
+
+.alert-animal-info::after {
+    content: 'ℹ️';
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-lg);
+    font-size: 1.2rem;
+}
+
+/* Safari Footer */
+.footer-animal {
+    background: var(--gradient-earth);
+    color: var(--text-light);
+    padding: var(--space-2xl) 0 var(--space-xl);
+    border-top: 4px solid var(--safari-gold);
+    margin-top: var(--space-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-animal::before {
+    content: '🌴 🦁 🐘 🦒 🌿 🦓 🐆 🌴';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    font-size: 1.5rem;
+    opacity: 0.2;
+    text-align: center;
+    animation: footerSafari 30s linear infinite;
+}
+
+@keyframes footerSafari {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.footer-animal .footer-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Animal Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sand-beige);
+    border-radius: var(--radius-natural);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-safari);
+    border-radius: var(--radius-natural);
+    border: 2px solid var(--sand-beige);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-earth);
+}
+
+/* Loading Animation */
+.loading-animal {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.loading-animal::after {
+    content: '🐘';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    animation: elephantWalk 2s ease-in-out infinite;
+}
+
+@keyframes elephantWalk {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(5px) rotate(5deg); }
+    50% { transform: translateX(0) rotate(0deg); }
+    75% { transform: translateX(-5px) rotate(-5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title-animal {
+        font-size: 2rem;
+    }
+    
+    .header-animal::before {
+        font-size: 1.5rem;
+    }
+    
+    .card-animal {
+        margin: var(--space-md) 0;
+    }
+    
+    .card-animal-body {
+        padding: var(--space-lg);
+    }
+    
+    .table-animal th,
+    .table-animal td {
+        padding: var(--space-md);
+    }
+    
+    .navbar-animal .navbar-brand {
+        font-size: 1.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .card-animal,
+    .alert-animal,
+    .btn-animal {
+        border-color: black;
+        box-shadow: none;
+        background: white;
+        color: black;
+    }
+    
+    .header-animal::before,
+    .footer-animal::before {
+        display: none;
+    }
+}

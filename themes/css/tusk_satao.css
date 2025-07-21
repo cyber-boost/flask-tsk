@@ -1,0 +1,697 @@
+/**
+ * 🐘 TuskPHP Satao Theme - Security & Threat Detection
+ * ====================================================
+ * Inspired by Satao the security elephant specialist
+ * High-contrast security-focused design with alert colors
+ */
+
+:root {
+    /* Satao Security Color Palette */
+    --security-red: #dc3545;
+    --security-orange: #fd7e14;
+    --security-yellow: #ffc107;
+    --security-green: #28a745;
+    --security-blue: #007bff;
+    --security-purple: #6f42c1;
+    
+    /* Threat Level Colors */
+    --threat-critical: #8b0000;
+    --threat-high: #dc3545;
+    --threat-medium: #fd7e14;
+    --threat-low: #ffc107;
+    --threat-none: #28a745;
+    
+    /* Secure Colors */
+    --secure-dark: #1a1a1a;
+    --secure-darker: #0d1117;
+    --secure-light: #f8f9fa;
+    --secure-border: #30363d;
+    --secure-text: #f0f6fc;
+    --secure-muted: #8b949e;
+    
+    /* Status Colors */
+    --status-online: #00ff00;
+    --status-offline: #ff0000;
+    --status-warning: #ffff00;
+    --status-scanning: #00bfff;
+    
+    /* Background Colors */
+    --bg-primary: var(--secure-darker);
+    --bg-secondary: var(--secure-dark);
+    --bg-alert: #2d1b1b;
+    --bg-success: #1b2d1b;
+    --bg-warning: #2d2d1b;
+    --bg-info: #1b1b2d;
+    
+    /* Text Colors */
+    --text-primary: var(--secure-text);
+    --text-secondary: var(--secure-muted);
+    --text-danger: var(--security-red);
+    --text-success: var(--security-green);
+    --text-warning: var(--security-yellow);
+    --text-info: var(--security-blue);
+    
+    /* Gradients */
+    --gradient-security: linear-gradient(135deg, var(--security-red) 0%, var(--security-orange) 100%);
+    --gradient-secure: linear-gradient(135deg, var(--secure-dark) 0%, var(--secure-darker) 100%);
+    --gradient-alert: linear-gradient(135deg, var(--threat-critical) 0%, var(--threat-high) 100%);
+    
+    /* Typography */
+    --font-security: 'Roboto Mono', 'Courier New', monospace;
+    --font-interface: 'Inter', 'Arial', sans-serif;
+    
+    /* Effects */
+    --glow-red: 0 0 10px var(--security-red);
+    --glow-green: 0 0 10px var(--security-green);
+    --glow-yellow: 0 0 10px var(--security-yellow);
+    --glow-blue: 0 0 10px var(--security-blue);
+    
+    /* Animations */
+    --blink-fast: 0.5s;
+    --blink-slow: 2s;
+    --pulse-duration: 1.5s;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--font-interface);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Security Grid Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Security Status Bar */
+.security-status-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--security-green);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-security);
+    font-size: 0.875rem;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.security-status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.security-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: securityPulse var(--pulse-duration) ease-in-out infinite;
+}
+
+.security-indicator.online { background: var(--status-online); }
+.security-indicator.offline { background: var(--status-offline); }
+.security-indicator.scanning { background: var(--status-scanning); }
+.security-indicator.warning { background: var(--status-warning); }
+
+@keyframes securityPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Security Headers */
+.header-satao {
+    background: var(--gradient-security);
+    color: var(--text-primary);
+    padding: 2rem;
+    margin-top: 60px; /* Account for status bar */
+    border: 2px solid var(--security-red);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-satao::before {
+    content: '🚨 SECURITY MONITORING ACTIVE 🚨';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem;
+    font-family: var(--font-security);
+    font-size: 0.75rem;
+    text-align: center;
+    animation: securityScroll 8s linear infinite;
+}
+
+@keyframes securityScroll {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.title-satao {
+    font-family: var(--font-security);
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 0 10px var(--security-red);
+    animation: titleAlert 3s ease-in-out infinite;
+}
+
+@keyframes titleAlert {
+    0%, 100% { text-shadow: 0 0 10px var(--security-red); }
+    50% { text-shadow: 0 0 20px var(--security-red), 0 0 30px var(--security-red); }
+}
+
+/* Security Buttons */
+.btn-satao {
+    background: var(--gradient-security);
+    border: 2px solid var(--security-red);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    font-family: var(--font-security);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-satao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-satao:hover {
+    box-shadow: var(--glow-red);
+    color: var(--text-primary);
+    border-color: var(--threat-critical);
+}
+
+.btn-satao:hover::before {
+    left: 100%;
+}
+
+.btn-satao-secure {
+    background: var(--security-green);
+    border-color: var(--security-green);
+}
+
+.btn-satao-secure:hover {
+    box-shadow: var(--glow-green);
+}
+
+.btn-satao-warning {
+    background: var(--security-yellow);
+    border-color: var(--security-yellow);
+    color: var(--secure-dark);
+}
+
+.btn-satao-warning:hover {
+    box-shadow: var(--glow-yellow);
+    color: var(--secure-dark);
+}
+
+.btn-satao-scan {
+    background: var(--security-blue);
+    border-color: var(--security-blue);
+}
+
+.btn-satao-scan:hover {
+    box-shadow: var(--glow-blue);
+}
+
+/* Threat Level Cards */
+.card-satao {
+    background: var(--bg-secondary);
+    border: 2px solid var(--secure-border);
+    border-radius: 4px;
+    margin: 1rem 0;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card-satao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--security-green);
+}
+
+.card-satao.threat-critical::before { background: var(--threat-critical); }
+.card-satao.threat-high::before { background: var(--threat-high); }
+.card-satao.threat-medium::before { background: var(--threat-medium); }
+.card-satao.threat-low::before { background: var(--threat-low); }
+.card-satao.threat-none::before { background: var(--threat-none); }
+
+.card-satao:hover {
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.3);
+    border-color: var(--security-red);
+}
+
+.card-satao-header {
+    background: var(--bg-alert);
+    color: var(--text-primary);
+    padding: 1rem;
+    border-bottom: 1px solid var(--secure-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-satao-header h3 {
+    margin: 0;
+    font-family: var(--font-security);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.threat-level {
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    font-family: var(--font-security);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.threat-level.critical {
+    background: var(--threat-critical);
+    color: var(--text-primary);
+    animation: criticalBlink var(--blink-fast) ease-in-out infinite;
+}
+
+.threat-level.high {
+    background: var(--threat-high);
+    color: var(--text-primary);
+}
+
+.threat-level.medium {
+    background: var(--threat-medium);
+    color: var(--secure-dark);
+}
+
+.threat-level.low {
+    background: var(--threat-low);
+    color: var(--secure-dark);
+}
+
+.threat-level.none {
+    background: var(--threat-none);
+    color: var(--text-primary);
+}
+
+@keyframes criticalBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.card-satao-body {
+    padding: 1.5rem;
+    font-family: var(--font-security);
+    font-size: 0.9rem;
+}
+
+/* Security Navigation */
+.navbar-satao {
+    background: var(--bg-secondary);
+    border-bottom: 2px solid var(--security-red);
+    padding: 1rem 0;
+    margin-top: 60px; /* Account for status bar */
+    position: relative;
+}
+
+.navbar-satao::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        var(--security-red) 0%, 
+        var(--security-yellow) 25%, 
+        var(--security-green) 50%, 
+        var(--security-blue) 75%, 
+        var(--security-red) 100%);
+    animation: securitySweep 3s linear infinite;
+}
+
+@keyframes securitySweep {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+.navbar-satao .navbar-brand {
+    font-family: var(--font-security);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--security-red);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-satao .navbar-brand::before {
+    content: '🛡️';
+    font-size: 1.5rem;
+    animation: shieldRotate 4s linear infinite;
+}
+
+@keyframes shieldRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.navbar-satao .nav-link {
+    color: var(--text-secondary);
+    font-family: var(--font-security);
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.navbar-satao .nav-link:hover,
+.navbar-satao .nav-link.active {
+    background: var(--security-red);
+    color: var(--text-primary);
+    border-color: var(--security-red);
+    box-shadow: var(--glow-red);
+    text-decoration: none;
+}
+
+/* Security Forms */
+.form-control-satao {
+    background: var(--bg-secondary);
+    border: 2px solid var(--secure-border);
+    color: var(--text-primary);
+    padding: 0.75rem;
+    font-family: var(--font-security);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-control-satao:focus {
+    outline: none;
+    border-color: var(--security-green);
+    box-shadow: var(--glow-green);
+    background: var(--bg-primary);
+}
+
+.form-control-satao.invalid {
+    border-color: var(--security-red);
+    box-shadow: var(--glow-red);
+}
+
+.form-control-satao::placeholder {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.form-label-satao {
+    color: var(--text-primary);
+    font-family: var(--font-security);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.875rem;
+}
+
+/* Security Tables */
+.table-satao {
+    background: var(--bg-secondary);
+    border: 2px solid var(--secure-border);
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1rem 0;
+    font-family: var(--font-security);
+    font-size: 0.875rem;
+}
+
+.table-satao thead {
+    background: var(--gradient-security);
+    color: var(--text-primary);
+}
+
+.table-satao th {
+    padding: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--security-red);
+}
+
+.table-satao td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--secure-border);
+    color: var(--text-primary);
+}
+
+.table-satao tbody tr:hover {
+    background: rgba(220, 53, 69, 0.1);
+}
+
+/* Security Alerts */
+.alert-satao {
+    border: 2px solid;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: var(--font-security);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.alert-satao::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+}
+
+.alert-satao-critical {
+    background: var(--bg-alert);
+    border-color: var(--threat-critical);
+    color: var(--threat-critical);
+    animation: criticalAlert var(--blink-fast) ease-in-out infinite;
+}
+
+.alert-satao-critical::before {
+    background: var(--threat-critical);
+}
+
+.alert-satao-high {
+    background: var(--bg-alert);
+    border-color: var(--threat-high);
+    color: var(--threat-high);
+}
+
+.alert-satao-high::before {
+    background: var(--threat-high);
+}
+
+.alert-satao-medium {
+    background: var(--bg-warning);
+    border-color: var(--threat-medium);
+    color: var(--threat-medium);
+}
+
+.alert-satao-medium::before {
+    background: var(--threat-medium);
+}
+
+.alert-satao-low {
+    background: var(--bg-warning);
+    border-color: var(--threat-low);
+    color: var(--threat-low);
+}
+
+.alert-satao-low::before {
+    background: var(--threat-low);
+}
+
+.alert-satao-secure {
+    background: var(--bg-success);
+    border-color: var(--threat-none);
+    color: var(--threat-none);
+}
+
+.alert-satao-secure::before {
+    background: var(--threat-none);
+}
+
+@keyframes criticalAlert {
+    0%, 100% { background: var(--bg-alert); }
+    50% { background: rgba(139, 0, 0, 0.3); }
+}
+
+/* Security Footer */
+.footer-satao {
+    background: var(--gradient-secure);
+    color: var(--text-primary);
+    padding: 2rem 0;
+    border-top: 2px solid var(--security-red);
+    margin-top: 2rem;
+    position: relative;
+}
+
+.footer-satao::before {
+    content: '🔒 SECURE CONNECTION ESTABLISHED 🔒';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    font-family: var(--font-security);
+    font-size: 0.75rem;
+    text-align: center;
+    opacity: 0.7;
+    animation: securityMessage 10s linear infinite;
+}
+
+@keyframes securityMessage {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Security Monitoring Dashboard */
+.security-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.security-metric {
+    background: var(--bg-secondary);
+    border: 2px solid var(--secure-border);
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.security-metric:hover {
+    border-color: var(--security-blue);
+    box-shadow: var(--glow-blue);
+}
+
+.security-metric-value {
+    font-family: var(--font-security);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--security-green);
+    margin-bottom: 0.5rem;
+}
+
+.security-metric-label {
+    font-family: var(--font-security);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.security-metric.alert .security-metric-value {
+    color: var(--security-red);
+    animation: metricAlert var(--blink-slow) ease-in-out infinite;
+}
+
+@keyframes metricAlert {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--security-red);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--threat-critical);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .security-status-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .title-satao {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .security-dashboard {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar-satao .navbar-brand {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+}
