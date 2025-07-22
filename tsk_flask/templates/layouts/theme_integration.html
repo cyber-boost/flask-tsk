@@ -1,0 +1,138 @@
+<!-- Flask-TSK Theme Integration Template -->
+<!-- This template integrates the themes.py system with layout templates -->
+
+{% macro render_theme_header(theme_name='modern', **kwargs) %}
+    {% if theme_name == 'modern' %}
+        {% include 'layouts/themes/modern_header.html' %}
+    {% elif theme_name == 'dark' %}
+        {% include 'layouts/themes/dark_header.html' %}
+    {% elif theme_name == 'classic' %}
+        {% include 'layouts/themes/classic_header.html' %}
+    {% elif theme_name == 'custom' %}
+        {% include 'layouts/themes/custom_header.html' %}
+    {% elif theme_name == 'happy' %}
+        {% include 'layouts/themes/happy_header.html' %}
+    {% elif theme_name == 'sad' %}
+        {% include 'layouts/themes/sad_header.html' %}
+    {% elif theme_name == 'peanuts' %}
+        {% include 'layouts/themes/peanuts_header.html' %}
+    {% elif theme_name == 'horton' %}
+        {% include 'layouts/themes/horton_header.html' %}
+    {% elif theme_name == 'dumbo' %}
+        {% include 'layouts/themes/dumbo_header.html' %}
+    {% elif theme_name == 'satao' %}
+        {% include 'layouts/themes/satao_header.html' %}
+    {% elif theme_name == 'animal' %}
+        {% include 'layouts/themes/animal_header.html' %}
+    {% elif theme_name == 'babar' %}
+        {% include 'layouts/themes/babar_header.html' %}
+    {% elif theme_name == '90s' %}
+        {% include 'layouts/themes/90s_header.html' %}
+    {% else %}
+        {% include 'layouts/header.html' %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_theme_footer(theme_name='modern', **kwargs) %}
+    {% if theme_name == 'modern' %}
+        {% include 'layouts/themes/modern_footer.html' %}
+    {% elif theme_name == 'dark' %}
+        {% include 'layouts/themes/dark_footer.html' %}
+    {% elif theme_name == 'classic' %}
+        {% include 'layouts/themes/classic_footer.html' %}
+    {% elif theme_name == 'custom' %}
+        {% include 'layouts/themes/custom_footer.html' %}
+    {% elif theme_name == 'happy' %}
+        {% include 'layouts/themes/happy_footer.html' %}
+    {% elif theme_name == 'sad' %}
+        {% include 'layouts/themes/sad_footer.html' %}
+    {% elif theme_name == 'peanuts' %}
+        {% include 'layouts/themes/peanuts_footer.html' %}
+    {% elif theme_name == 'horton' %}
+        {% include 'layouts/themes/horton_footer.html' %}
+    {% elif theme_name == 'dumbo' %}
+        {% include 'layouts/themes/dumbo_footer.html' %}
+    {% elif theme_name == 'satao' %}
+        {% include 'layouts/themes/satao_footer.html' %}
+    {% elif theme_name == 'animal' %}
+        {% include 'layouts/themes/animal_footer.html' %}
+    {% elif theme_name == 'babar' %}
+        {% include 'layouts/themes/babar_footer.html' %}
+    {% elif theme_name == '90s' %}
+        {% include 'layouts/themes/90s_footer.html' %}
+    {% else %}
+        {% include 'layouts/footer.html' %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_theme_navigation(theme_name='modern', **kwargs) %}
+    {% if theme_name == 'modern' %}
+        {% include 'layouts/themes/modern_navigation.html' %}
+    {% elif theme_name == 'dark' %}
+        {% include 'layouts/themes/dark_navigation.html' %}
+    {% elif theme_name == 'classic' %}
+        {% include 'layouts/themes/classic_navigation.html' %}
+    {% elif theme_name == 'custom' %}
+        {% include 'layouts/themes/custom_navigation.html' %}
+    {% elif theme_name == 'happy' %}
+        {% include 'layouts/themes/happy_navigation.html' %}
+    {% elif theme_name == 'sad' %}
+        {% include 'layouts/themes/sad_navigation.html' %}
+    {% elif theme_name == 'peanuts' %}
+        {% include 'layouts/themes/peanuts_navigation.html' %}
+    {% elif theme_name == 'horton' %}
+        {% include 'layouts/themes/horton_navigation.html' %}
+    {% elif theme_name == 'dumbo' %}
+        {% include 'layouts/themes/dumbo_navigation.html' %}
+    {% elif theme_name == 'satao' %}
+        {% include 'layouts/themes/satao_navigation.html' %}
+    {% elif theme_name == 'animal' %}
+        {% include 'layouts/themes/animal_navigation.html' %}
+    {% elif theme_name == 'babar' %}
+        {% include 'layouts/themes/babar_navigation.html' %}
+    {% elif theme_name == '90s' %}
+        {% include 'layouts/themes/90s_navigation.html' %}
+    {% else %}
+        {% include 'layouts/navigation.html' %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_theme_layout(theme_name='modern', content='', **kwargs) %}
+    <!DOCTYPE html>
+    <html lang="en" class="theme-{{ theme_name }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title|default('Flask-TSK') }}</title>
+        
+        <!-- Theme-specific CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/themes/' + theme_name + '.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/layouts.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        
+        <!-- TuskLang Asset Management -->
+        {% if tsk_available %}
+            <link rel="stylesheet" href="{{ tsk_asset('css', 'themes/' + theme_name + '.css') }}">
+        {% endif %}
+    </head>
+    <body class="theme-{{ theme_name }}">
+        {{ render_theme_navigation(theme_name, **kwargs) | safe }}
+        {{ render_theme_header(theme_name, **kwargs) | safe }}
+        
+        <main class="main-content theme-{{ theme_name }}-content">
+            {{ content | safe }}
+        </main>
+        
+        {{ render_theme_footer(theme_name, **kwargs) | safe }}
+        
+        <!-- Theme-specific JavaScript -->
+        <script src="{{ url_for('static', filename='js/themes/' + theme_name + '.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/layouts.js') }}"></script>
+        
+        <!-- TuskLang Asset Management -->
+        {% if tsk_available %}
+            <script src="{{ tsk_asset('js', 'themes/' + theme_name + '.js') }}"></script>
+        {% endif %}
+    </body>
+    </html>
+{% endmacro %} 

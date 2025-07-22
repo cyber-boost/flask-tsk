@@ -408,47 +408,147 @@ class FlaskTSK:
 
     def setup_project_structure(self, project_path: str = None):
         """
-        Create Flask-TSK special folder structure for asset management, layouts, and optimization.
+        Create Flask-TSK comprehensive folder structure for asset management, layouts, and optimization.
         
         Creates:
         - tsk/assets/ (CSS, JS, images, fonts)
         - tsk/layouts/ (HTML templates, headers, footers)
+        - tsk/templates/ (Jinja2 templates - auth, base, pages)
+        - tsk/components/ (Ready-to-use Flask components)
         - tsk/optimization/ (minification, obfuscation scripts)
         - tsk/config/ (TuskLang configuration files)
-        - tsk/templates/ (Jinja2 templates)
         - tsk/static/ (Flask static files)
-        - tsk/components/ (Ready-to-use Flask components)
+        - tsk/auth/ (Authentication templates and components)
+        - tsk/menus/ (Navigation menus and dropdowns)
+        - tsk/navs/ (Navigation components)
+        - tsk/forms/ (Form components and validation)
+        - tsk/ui/ (UI components and widgets)
         """
         if project_path is None:
             project_path = os.getcwd()
         
-        # Define the folder structure
+        # Define the comprehensive folder structure
         folders = [
+            # Core Flask-TSK structure
             'tsk/assets/css',
             'tsk/assets/js', 
             'tsk/assets/images',
             'tsk/assets/fonts',
+            'tsk/assets/icons',
+            
+            # Layout system
             'tsk/layouts/headers',
             'tsk/layouts/footers',
             'tsk/layouts/navigation',
-            'tsk/optimization/scripts',
-            'tsk/optimization/tools',
-            'tsk/config',
-            'tsk/templates',
-            'tsk/static/css',
-            'tsk/static/js',
-            'tsk/static/images',
-            'tsk/static/fonts',
-            'tsk/build',
-            'tsk/cache',
-            'tsk/components',
+            'tsk/layouts/sidebars',
+            'tsk/layouts/modals',
+            
+            # Template system
+            'tsk/templates/base',
+            'tsk/templates/auth',
+            'tsk/templates/pages',
+            'tsk/templates/admin',
+            'tsk/templates/dashboard',
+            'tsk/templates/errors',
+            'tsk/templates/email',
+            
+            # Component system
             'tsk/components/navigation',
             'tsk/components/forms',
             'tsk/components/ui',
             'tsk/components/layouts',
             'tsk/components/ecommerce',
             'tsk/components/blog',
-            'tsk/components/dashboard'
+            'tsk/components/dashboard',
+            'tsk/components/cards',
+            'tsk/components/tables',
+            'tsk/components/buttons',
+            'tsk/components/alerts',
+            'tsk/components/modals',
+            'tsk/components/charts',
+            'tsk/components/widgets',
+            
+            # Authentication system
+            'tsk/auth/templates',
+            'tsk/auth/components',
+            'tsk/auth/forms',
+            'tsk/auth/middleware',
+            
+            # Menu system
+            'tsk/menus/main',
+            'tsk/menus/sidebar',
+            'tsk/menus/user',
+            'tsk/menus/admin',
+            'tsk/menus/mobile',
+            
+            # Navigation system
+            'tsk/navs/primary',
+            'tsk/navs/secondary',
+            'tsk/navs/breadcrumbs',
+            'tsk/navs/pagination',
+            'tsk/navs/tabs',
+            
+            # Form system
+            'tsk/forms/auth',
+            'tsk/forms/user',
+            'tsk/forms/admin',
+            'tsk/forms/validation',
+            'tsk/forms/widgets',
+            
+            # UI system
+            'tsk/ui/buttons',
+            'tsk/ui/inputs',
+            'tsk/ui/cards',
+            'tsk/ui/alerts',
+            'tsk/ui/modals',
+            'tsk/ui/tables',
+            'tsk/ui/charts',
+            'tsk/ui/progress',
+            'tsk/ui/badges',
+            'tsk/ui/tooltips',
+            
+            # Optimization and build
+            'tsk/optimization/scripts',
+            'tsk/optimization/tools',
+            'tsk/build',
+            'tsk/cache',
+            
+            # Configuration
+            'tsk/config',
+            'tsk/config/themes',
+            'tsk/config/databases',
+            'tsk/config/security',
+            
+            # Static files (Flask standard)
+            'tsk/static/css',
+            'tsk/static/js',
+            'tsk/static/images',
+            'tsk/static/fonts',
+            'tsk/static/icons',
+            
+            # Data and database
+            'tsk/data',
+            'tsk/data/migrations',
+            'tsk/data/seeds',
+            'tsk/data/backups',
+            
+            # Documentation
+            'tsk/docs',
+            'tsk/docs/api',
+            'tsk/docs/components',
+            'tsk/docs/themes',
+            
+            # Tests
+            'tsk/tests',
+            'tsk/tests/unit',
+            'tsk/tests/integration',
+            'tsk/tests/components',
+            
+            # Logs
+            'tsk/logs',
+            'tsk/logs/access',
+            'tsk/logs/error',
+            'tsk/logs/debug'
         ]
         
         # Create folders
@@ -457,10 +557,10 @@ class FlaskTSK:
             os.makedirs(folder_path, exist_ok=True)
             current_app.logger.info(f"Created Flask-TSK folder: {folder}")
         
-        # Create default files
-        self._create_default_files(project_path)
+        # Create comprehensive default files
+        self._create_comprehensive_default_files(project_path)
         
-        current_app.logger.info("Flask-TSK project structure setup complete!")
+        current_app.logger.info("Flask-TSK comprehensive project structure setup complete!")
         return True
     
     def _create_default_files(self, project_path: str):
@@ -472,6 +572,35 @@ class FlaskTSK:
 version = "1.0.1"
 auto_setup = true
 optimization_enabled = true
+
+[database]
+# Database configuration
+type = "sqlite"
+herd_db = "data/herd_auth.db"
+elephants_db = "data/elephant_services.db"
+auto_create = true
+migrations = true
+
+[herd]
+# Herd authentication configuration
+guards = ["web", "api", "admin"]
+session_lifetime = 7200
+max_attempts = 5
+lockout_duration = 900
+
+[users]
+# User management configuration
+table = "users"
+provider = "tusk"
+default_role = "user"
+require_email_verification = true
+
+[auth]
+# Authentication configuration
+table = "auth_attempts"
+provider = "tusk"
+password_min_length = 8
+require_special_chars = true
 
 [assets]
 # Asset management configuration
@@ -730,105 +859,906 @@ function showNotification(message, type = 'info') {
                 f.write(content)
             current_app.logger.info(f"Created Flask-TSK file: {file_path}")
 
+    def _create_comprehensive_default_files(self, project_path: str):
+        """Create comprehensive default configuration and template files."""
+        
+        # Enhanced peanu.tsk configuration
+        peanu_content = '''[flask_tsk]
+# Flask-TSK Comprehensive Configuration
+version = "1.0.1"
+auto_setup = true
+optimization_enabled = true
+theme_system = true
+auth_system = true
+component_system = true
 
-# Convenience function to get Flask-TSK instance
-def get_tsk() -> FlaskTSK:
-    """Get the Flask-TSK instance from current app"""
-    return current_app.extensions.get('flask-tsk')
+[database]
+# Database configuration
+type = "sqlite"
+herd_db = "tsk/data/herd_auth.db"
+elephants_db = "tsk/data/elephant_services.db"
+auto_create = true
+migrations = true
+backup_enabled = true
 
+[herd]
+# Herd authentication configuration
+guards = ["web", "api", "admin", "mobile"]
+session_lifetime = 7200
+max_attempts = 5
+lockout_duration = 900
+password_reset_enabled = true
+email_verification = true
 
-# ===== TEMPLATE HELPERS =====
+[users]
+# User management configuration
+table = "users"
+provider = "tusk"
+default_role = "user"
+require_email_verification = true
+profile_fields = ["first_name", "last_name", "avatar", "bio"]
+roles = ["user", "admin", "moderator", "premium"]
 
-def tsk_config(section: str, key: str, default: Any = None) -> Any:
-    """Template helper to get TuskLang configuration"""
-    tsk = get_tsk()
-    if tsk:
-        return tsk.get_config(section, key, default)
-    return default
+[auth]
+# Authentication configuration
+table = "auth_attempts"
+provider = "tusk"
+password_min_length = 8
+require_special_chars = true
+two_factor_enabled = false
+social_login = ["google", "github", "facebook"]
 
+[assets]
+# Asset management configuration
+css_dir = "tsk/assets/css"
+js_dir = "tsk/assets/js"
+images_dir = "tsk/assets/images"
+fonts_dir = "tsk/assets/fonts"
+icons_dir = "tsk/assets/icons"
 
-def tsk_section(section: str) -> Optional[Dict[str, Any]]:
-    """Template helper to get TuskLang section"""
-    tsk = get_tsk()
-    if tsk:
-        return tsk.get_section(section)
-    return None
+[optimization]
+# Optimization settings
+minify_css = true
+minify_js = true
+obfuscate_js = false
+compress_images = true
+cache_enabled = true
+gzip_enabled = true
 
+[layouts]
+# Layout configuration
+default_header = "tsk/layouts/headers/default.html"
+default_footer = "tsk/layouts/footers/default.html"
+default_nav = "tsk/layouts/navigation/default.html"
+default_sidebar = "tsk/layouts/sidebars/default.html"
+responsive = true
 
-def tsk_function(section: str, key: str, *args, **kwargs) -> Any:
-    """Template helper to execute TuskLang function"""
-    tsk = get_tsk()
-    if tsk:
-        return tsk.execute_function(section, key, *args, **kwargs)
-    return None
+[components]
+# Component configuration
+auto_include = true
+component_dir = "tsk/components"
+default_theme = "modern"
+responsive = true
+lazy_loading = true
 
+[themes]
+# Theme configuration
+default_theme = "modern"
+available_themes = ["modern", "dark", "classic", "custom"]
+theme_switcher = true
+custom_css_enabled = true
 
-def tsk_parse(content: str, enhanced: bool = False) -> Dict[str, Any]:
-    """Template helper to parse TuskLang content"""
-    tsk = get_tsk()
-    if tsk:
-        return tsk.parse_tsk(content, enhanced)
-    return {}
+[build]
+# Build settings
+output_dir = "tsk/build"
+source_maps = true
+watch_mode = false
+hot_reload = true
 
+[security]
+# Security configuration
+csrf_enabled = true
+xss_protection = true
+content_security_policy = true
+rate_limiting = true
+session_secure = true
 
-def tsk_stringify(data: Dict[str, Any]) -> str:
-    """Template helper to stringify data to TuskLang format"""
-    tsk = get_tsk()
-    if tsk:
-        return tsk.stringify_tsk(data)
-    return ""
+[logging]
+# Logging configuration
+level = "INFO"
+file_logging = true
+log_dir = "tsk/logs"
+max_file_size = "10MB"
+backup_count = 5
+'''
+        
+        # Base template
+        base_template = '''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ title|default('Flask-TSK App') }}{% endblock %}</title>
+    
+    <!-- Flask-TSK Asset Management -->
+    {% if tsk_available %}
+        <link rel="stylesheet" href="{{ tsk_asset('css', 'main.css') }}">
+        <link rel="stylesheet" href="{{ tsk_asset('css', 'components.css') }}">
+        <link rel="stylesheet" href="{{ tsk_asset('css', 'themes/' + theme|default('modern') + '.css') }}">
+        <script src="{{ tsk_asset('js', 'main.js') }}" defer></script>
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    {% endif %}
+    
+    <!-- Meta tags -->
+    <meta name="description" content="{% block description %}{{ description|default('Flask-TSK Application') }}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{{ keywords|default('flask, tusk, python') }}{% endblock %}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}{{ title|default('Flask-TSK App') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ description|default('Flask-TSK Application') }}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="theme-{{ theme|default('modern') }}">
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    
+    <!-- Navigation -->
+    {% include 'tsk/layouts/navigation/default.html' %}
+    
+    <!-- Main content wrapper -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    {% include 'tsk/layouts/footers/default.html' %}
+    
+    <!-- Flask-TSK Asset Management -->
+    {% if tsk_available %}
+        <script src="{{ tsk_asset('js', 'footer.js') }}"></script>
+        <script src="{{ tsk_asset('js', 'components.js') }}"></script>
+    {% else %}
+        <script src="{{ url_for('static', filename='js/footer.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/components.js') }}"></script>
+    {% endif %}
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>
+'''
+        
+        # Auth templates
+        login_template = '''{% extends "tsk/templates/base/base.html" %}
 
+{% block title %}Login - Flask-TSK{% endblock %}
 
-# ===== PERFORMANCE HELPERS =====
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to your account</p>
+        </div>
+        
+        <form method="POST" action="{{ url_for('auth.login') }}" class="auth-form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="remember" id="remember">
+                    <span class="checkmark"></span>
+                    Remember me
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+        
+        <div class="auth-footer">
+            <a href="{{ url_for('auth.forgot_password') }}">Forgot password?</a>
+            <span class="divider">|</span>
+            <a href="{{ url_for('auth.register') }}">Create account</a>
+        </div>
+        
+        <div class="social-login">
+            <p>Or sign in with</p>
+            <div class="social-buttons">
+                <a href="{{ url_for('auth.google_login') }}" class="btn btn-social btn-google">
+                    <i class="fab fa-google"></i> Google
+                </a>
+                <a href="{{ url_for('auth.github_login') }}" class="btn btn-social btn-github">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+'''
+        
+        register_template = '''{% extends "tsk/templates/base/base.html" %}
 
-def render_turbo_template(template_content: str, context: Dict[str, Any] = None) -> str:
-    """High-performance template rendering"""
-    if PERFORMANCE_ENGINE_AVAILABLE:
-        from .performance_engine import render_turbo_template as turbo_render
-        return turbo_render(template_content, context)
-    else:
-        # Fallback to regular rendering
-        return template_content
+{% block title %}Register - Flask-TSK{% endblock %}
 
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1>Create Account</h1>
+            <p>Join our community</p>
+        </div>
+        
+        <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required class="form-control">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required class="form-control">
+                <div class="password-strength" id="password-strength"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="terms" id="terms" required>
+                    <span class="checkmark"></span>
+                    I agree to the <a href="{{ url_for('terms') }}">Terms of Service</a>
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        </form>
+        
+        <div class="auth-footer">
+            <span>Already have an account?</span>
+            <a href="{{ url_for('auth.login') }}">Sign in</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+'''
+        
+        # Enhanced navigation template
+        enhanced_nav = '''<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="{{ url_for('index') }}" class="brand-logo">
+                <span class="brand-icon">🐘</span>
+                <span class="brand-text">Flask-TSK</span>
+            </a>
+        </div>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{{ url_for('index') }}" class="nav-link {{ 'active' if request.endpoint == 'index' else '' }}">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('about') }}" class="nav-link {{ 'active' if request.endpoint == 'about' else '' }}">
+                        <i class="fas fa-info-circle"></i> About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('contact') }}" class="nav-link {{ 'active' if request.endpoint == 'contact' else '' }}">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </li>
+                
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown">
+                            <img src="{{ current_user.avatar or url_for('static', filename='images/default-avatar.png') }}" 
+                                 alt="{{ current_user.name }}" class="user-avatar">
+                            {{ current_user.name }}
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ url_for('profile') }}">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a class="dropdown-item" href="{{ url_for('settings') }}">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.login') }}" class="nav-link">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Register
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+'''
+        
+        # Enhanced CSS with components
+        enhanced_css = '''/* Flask-TSK Enhanced Styles */
+:root {
+    --primary-color: #4ECDC4;
+    --secondary-color: #FF6B6B;
+    --accent-color: #FFE66D;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --text-color: #1A1A1A;
+    --text-muted: #6c757d;
+    --background-color: #F8F9FA;
+    --border-color: #dee2e6;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --transition: all 0.3s ease;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-lg: 0 4px 20px rgba(0,0,0,0.15);
+}
 
-async def render_turbo_template_async(template_content: str, context: Dict[str, Any] = None) -> str:
-    """Asynchronous high-performance template rendering"""
-    if PERFORMANCE_ENGINE_AVAILABLE:
-        from .performance_engine import render_turbo_template_async as turbo_render_async
-        return await turbo_render_async(template_content, context)
-    else:
-        # Fallback to regular rendering
-        return template_content
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
 
-def get_performance_stats() -> Dict[str, Any]:
-    """Get performance statistics"""
-    if PERFORMANCE_ENGINE_AVAILABLE:
-        from .performance_engine import get_performance_stats as get_stats
-        return get_stats()
-    else:
-        return {'error': 'Performance engine not available'}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
+/* Navigation */
+.navbar {
+    background: white;
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-# ===== EXPORT ALL TUSKLANG FEATURES =====
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
 
-# Export all TuskLang SDK features for direct access
-if TUSK_AVAILABLE:
-    __all__ = [
-        'FlaskTSK', 'get_tsk',
-        'tsk_config', 'tsk_section', 'tsk_function', 'tsk_parse', 'tsk_stringify',
-        'render_turbo_template', 'render_turbo_template_async', 'get_performance_stats',
-        'optimize_flask_app',
-        # TuskLang SDK exports
-        'TSK', 'parse', 'stringify', 'load_from_peanut', 'save', 'load',
-        'parse_enhanced', 'parse_with_comments', 'TSKParser', 'ShellStorage',
-        'TUSK_AVAILABLE', 'TUSK_VERSION', 'PERFORMANCE_ENGINE_AVAILABLE'
-    ]
-else:
-    __all__ = [
-        'FlaskTSK', 'get_tsk',
-        'tsk_config', 'tsk_section', 'tsk_function', 'tsk_parse', 'tsk_stringify',
-        'render_turbo_template', 'render_turbo_template_async', 'get_performance_stats',
-        'optimize_flask_app',
-        'TUSK_AVAILABLE', 'TUSK_VERSION', 'PERFORMANCE_ENGINE_AVAILABLE'
-    ] 
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.brand-icon {
+    font-size: 1.8rem;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Auth Components */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.auth-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.auth-header p {
+    color: var(--text-muted);
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3db8b0;
+    transform: translateY(-1px);
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Flash Messages */
+.flash-messages {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+    max-width: 400px;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.alert-warning {
+    background-color: var(--warning-color);
+    color: var(--text-color);
+}
+
+.alert-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.alert-info {
+    background-color: var(--info-color);
+    color: white;
+}
+
+/* Main content */
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+/* Footer */
+.footer {
+    background: var(--text-color);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .auth-card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+'''
+        
+        # Enhanced JavaScript
+        enhanced_js = '''// Flask-TSK Enhanced JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Flask-TSK Enhanced Application Loaded');
+    
+    // Initialize all components
+    initNavigation();
+    initAuthComponents();
+    initFlashMessages();
+    initFormValidation();
+    
+    // Initialize any TuskLang features
+    if (typeof tsk !== 'undefined') {
+        initTuskFeatures();
+    }
+});
+
+function initNavigation() {
+    // Add active class to current page
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll('.nav-link');
+    
+    navItems.forEach(item => {
+        if (item.getAttribute('href') === currentPath) {
+            item.classList.add('active');
+        }
+    });
+    
+    // Initialize dropdowns
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            const menu = this.nextElementSibling;
+            menu.classList.toggle('show');
+        });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        }
+    });
+}
+
+function initAuthComponents() {
+    // Password strength indicator
+    const passwordInput = document.getElementById('password');
+    if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+            const strength = calculatePasswordStrength(this.value);
+            updatePasswordStrength(strength);
+        });
+    }
+    
+    // Password confirmation
+    const confirmPassword = document.getElementById('confirm_password');
+    if (confirmPassword) {
+        confirmPassword.addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            if (this.value !== password) {
+                this.setCustomValidity('Passwords do not match');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    }
+}
+
+function initFlashMessages() {
+    // Auto-dismiss flash messages
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            alert.style.opacity = '0';
+            setTimeout(() => alert.remove(), 300);
+        }, 5000);
+    });
+    
+    // Manual dismiss
+    const closeButtons = document.querySelectorAll('.alert .close');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.parentElement.remove();
+        });
+    });
+}
+
+function initFormValidation() {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            if (!this.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            this.classList.add('was-validated');
+        });
+    });
+}
+
+function calculatePasswordStrength(password) {
+    let strength = 0;
+    
+    if (password.length >= 8) strength += 1;
+    if (/[a-z]/.test(password)) strength += 1;
+    if (/[A-Z]/.test(password)) strength += 1;
+    if (/[0-9]/.test(password)) strength += 1;
+    if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+    
+    return strength;
+}
+
+function updatePasswordStrength(strength) {
+    const indicator = document.getElementById('password-strength');
+    if (!indicator) return;
+    
+    const messages = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+    const colors = ['#dc3545', '#ffc107', '#fd7e14', '#28a745', '#20c997'];
+    
+    indicator.textContent = messages[strength - 1] || '';
+    indicator.style.color = colors[strength - 1] || '#6c757d';
+}
+
+function initTuskFeatures() {
+    // Initialize TuskLang-specific features
+    console.log('TuskLang features initialized');
+    
+    // Example: Dynamic configuration loading
+    if (tsk && tsk.getConfig) {
+        const theme = tsk.getConfig('ui', 'theme', 'light');
+        document.body.setAttribute('data-theme', theme);
+    }
+}
+
+// Utility functions
+function showNotification(message, type = 'info', duration = 3000) {
+    const notification = document.createElement('div');
+    notification.className = `alert alert-${type} alert-dismissible`;
+    notification.innerHTML = `
+        ${message}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    `;
+    
+    // Add to flash messages container or create one
+    let container = document.querySelector('.flash-messages');
+    if (!container) {
+        container = document.createElement('div');
+        container.className = 'flash-messages';
+        document.body.appendChild(container);
+    }
+    
+    container.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, duration);
+}
+
+// Form helpers
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function validatePassword(password) {
+    return password.length >= 8;
+}
+
+// API helpers
+async function apiRequest(url, options = {}) {
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            },
+            ...options
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('API request failed:', error);
+        throw error;
+    }
+}
+'''
+        
+        # Component templates
+        button_component = '''<!-- Button Component -->
+<button class="btn btn-{{ style|default('primary') }} {{ size|default('') }} {{ 'btn-block' if block else '' }}"
+        {% if disabled %}disabled{% endif %}
+        {% if onclick %}onclick="{{ onclick }}"{% endif %}
+        {% if type %}type="{{ type }}"{% endif %}>
+    {% if icon %}<i class="{{ icon }}"></i>{% endif %}
+    {{ text }}
+</button>
+'''
+        
+        card_component = '''<!-- Card Component -->
+<div class="card {{ 'card-' + style if style else '' }}">
+    {% if header %}
+        <div class="card-header">
+            {% if header_icon %}<i class="{{ header_icon }}"></i>{% endif %}
+            {{ header }}
+        </div>
+    {% endif %}
+    
+    <div class="card-body">
+        {{ content|safe }}
+    </div>
+    
+    {% if footer %}
+        <div class="card-footer">
+            {{ footer|safe }}
+        </div>
+    {% endif %}
+</div>
+'''
+        
+        # Create comprehensive file structure
+        files = {
+            # Configuration
+            'tsk/config/peanu.tsk': peanu_content,
+            
+            # Base templates
+            'tsk/templates/base/base.html': base_template,
+            
+            # Auth templates
+            'tsk/templates/auth/login.html': login_template,
+            'tsk/templates/auth/register.html': register_template,
+            'tsk/templates/auth/forgot_password.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>Forgot Password</h1>{% endblock %}',
+            'tsk/templates/auth/reset_password.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>Reset Password</h1>{% endblock %}',
+            
+            # Layout templates
+            'tsk/layouts/headers/default.html': base_template,
+            'tsk/layouts/footers/default.html': '    </main>\n    <footer class="footer">\n        <div class="container">\n            <p>&copy; {{ current_year|default(2024) }} Flask-TSK Application. Powered by <a href="https://github.com/cyber-boost/tusktsk" target="_blank">TuskLang</a>.</p>\n        </div>\n    </footer>',
+            'tsk/layouts/navigation/default.html': enhanced_nav,
+            
+            # Component templates
+            'tsk/components/buttons/button.html': button_component,
+            'tsk/components/cards/card.html': card_component,
+            
+            # Assets
+            'tsk/assets/css/main.css': enhanced_css,
+            'tsk/assets/js/main.js': enhanced_js,
+            'tsk/static/css/main.css': enhanced_css,
+            'tsk/static/js/main.js': enhanced_js,
+            
+            # Documentation
+            'tsk/docs/README.md': '# Flask-TSK Project Documentation\n\nThis project uses Flask-TSK for enhanced functionality.\n\n## Structure\n- `tsk/templates/` - Jinja2 templates\n- `tsk/components/` - Reusable components\n- `tsk/assets/` - Source assets\n- `tsk/static/` - Compiled assets\n\n## Getting Started\n1. Run `flask-tsk db init`\n2. Start development server\n3. Visit http://localhost:5000',
+            
+            # Sample pages
+            'tsk/templates/pages/index.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>Welcome to Flask-TSK</h1>{% endblock %}',
+            'tsk/templates/pages/about.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>About Flask-TSK</h1>{% endblock %}',
+            'tsk/templates/pages/contact.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>Contact Us</h1>{% endblock %}',
+            
+            # Error pages
+            'tsk/templates/errors/404.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>404 - Page Not Found</h1>{% endblock %}',
+            'tsk/templates/errors/500.html': '{% extends "tsk/templates/base/base.html" %}\n{% block content %}<h1>500 - Server Error</h1>{% endblock %}',
+        }
+        
+        # Create files
+        for file_path, content in files.items():
+            full_path = os.path.join(project_path, file_path)
+            os.makedirs(os.path.dirname(full_path), exist_ok=True)
+            with open(full_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            current_app.logger.info(f"Created Flask-TSK file: {file_path}") 

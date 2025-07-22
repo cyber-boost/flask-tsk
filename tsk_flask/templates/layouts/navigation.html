@@ -1,0 +1,108 @@
+<!-- Flask-TSK Navigation Layout Component -->
+<nav class="navigation navigation-{{ theme|default('default') }}">
+    <div class="container">
+        <div class="nav-brand">
+            <a href="{{ brand_url|default('/') }}" class="nav-brand-link">
+                {% if brand_logo %}
+                <img src="{{ brand_logo }}" alt="{{ brand_text|default('Flask-TSK') }}" class="nav-brand-logo">
+                {% endif %}
+                <span class="nav-brand-text">{{ brand_text|default('Flask-TSK') }}</span>
+            </a>
+        </div>
+        
+        <div class="nav-menu">
+            <ul class="nav-list">
+                {% for item in navigation_items %}
+                <li class="nav-item {{ 'active' if item.active else '' }} {{ 'dropdown' if item.children else '' }}">
+                    <a href="{{ item.url }}" class="nav-link">
+                        {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+                        {{ item.text }}
+                        {% if item.children %}<i class="fas fa-chevron-down dropdown-arrow"></i>{% endif %}
+                    </a>
+                    
+                    {% if item.children %}
+                    <ul class="dropdown-menu">
+                        {% for child in item.children %}
+                        <li class="dropdown-item">
+                            <a href="{{ child.url }}" class="dropdown-link">
+                                {% if child.icon %}<i class="{{ child.icon }}"></i>{% endif %}
+                                {{ child.text }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="nav-actions">
+            {% if show_search|default(false) %}
+            <div class="nav-search">
+                <button class="search-toggle" onclick="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-dropdown" id="searchDropdown">
+                    <form class="search-form" action="{{ search_url|default('/search') }}" method="GET">
+                        <input type="text" name="q" placeholder="Search..." class="search-input">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if user_menu %}
+            <div class="nav-user">
+                <div class="user-menu">
+                    <button class="user-toggle" onclick="toggleUserMenu()">
+                        {% if user_menu.avatar %}
+                        <img src="{{ user_menu.avatar }}" alt="{{ user_menu.name }}" class="user-avatar">
+                        {% else %}
+                        <i class="fas fa-user"></i>
+                        {% endif %}
+                        <span class="user-name">{{ user_menu.name }}</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
+                    <ul class="user-dropdown" id="userDropdown">
+                        {% for item in user_menu.items %}
+                        <li class="user-item">
+                            <a href="{{ item.url }}" class="user-link">
+                                {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+                                {{ item.text }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+            
+            <button class="nav-toggle" onclick="toggleMobileMenu()">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<script>
+function toggleSearch() {
+    const dropdown = document.getElementById('searchDropdown');
+    dropdown.classList.toggle('active');
+}
+
+function toggleUserMenu() {
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('active');
+}
+
+function toggleMobileMenu() {
+    const nav = document.querySelector('.navigation');
+    nav.classList.toggle('mobile-active');
+}
+</script> 

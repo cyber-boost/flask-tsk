@@ -1,0 +1,70 @@
+<!-- Flask-TSK Footer Layout Component -->
+<footer class="footer footer-{{ theme|default('default') }}">
+    <div class="container">
+        <div class="footer-content">
+            {% if footer_links %}
+            <div class="footer-section">
+                <h3 class="footer-title">{{ footer_title|default('Quick Links') }}</h3>
+                <ul class="footer-links">
+                    {% for link in footer_links %}
+                    <li class="footer-link-item">
+                        <a href="{{ link.url }}" class="footer-link">{{ link.text }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            {% if social_links %}
+            <div class="footer-section">
+                <h3 class="footer-title">{{ social_title|default('Follow Us') }}</h3>
+                <div class="social-links">
+                    {% for social in social_links %}
+                    <a href="{{ social.url }}" class="social-link" target="_blank" rel="noopener">
+                        <i class="{{ social.icon }}"></i>
+                        <span class="social-text">{{ social.text }}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if contact_info %}
+            <div class="footer-section">
+                <h3 class="footer-title">{{ contact_title|default('Contact') }}</h3>
+                <div class="contact-info">
+                    {% if contact_info.email %}
+                    <p class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a>
+                    </p>
+                    {% endif %}
+                    {% if contact_info.phone %}
+                    <p class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:{{ contact_info.phone }}">{{ contact_info.phone }}</a>
+                    </p>
+                    {% endif %}
+                    {% if contact_info.address %}
+                    <p class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        {{ contact_info.address }}
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">{{ copyright_text|default('© 2024 Flask-TSK. All rights reserved.') }}</p>
+            {% if footer_bottom_links %}
+            <div class="footer-bottom-links">
+                {% for link in footer_bottom_links %}
+                <a href="{{ link.url }}" class="footer-bottom-link">{{ link.text }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</footer> 

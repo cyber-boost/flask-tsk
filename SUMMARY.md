@@ -2,8 +2,6 @@
 
 ## Mission Accomplished!
 
-We have successfully created **Flask-TSK**, a revolutionary Flask extension that provides **FULL TuskLang SDK integration** and solves Flask's notorious 10-minute reload problem with **10x faster template rendering**.
-
 ## 🎯 What We Built
 
 ### Revolutionary Performance Engine
@@ -116,30 +114,35 @@ DELETE /tsk/sections/{section}     # Delete sections
 
 ## 🔧 Installation Options
 
-### Basic Installation
+### Full Installation (Recommended)
 ```bash
 pip install flask-tsk
 ```
+**Includes everything:**
+- 59x faster rendering with performance optimizations
+- Multi-database support (PostgreSQL, MongoDB, Redis)
+- FastAPI integration for async development
+- Complete authentication and elephant services
+- Asset optimization and CLI tools
 
-### With Performance Optimizations
+### Minimal Installation
 ```bash
-pip install flask-tsk[performance]
+pip install flask-tsk[minimal]
 ```
+**Core only:**
+- Flask framework
+- TuskLang integration
+- Basic functionality
 
-### With Database Support
-```bash
-pip install flask-tsk[databases]
-```
-
-### With FastAPI Support
-```bash
-pip install flask-tsk[fastapi]
-```
-
-### Development Installation
+### Development Tools
 ```bash
 pip install flask-tsk[dev]
 ```
+**Testing and development:**
+- pytest for testing
+- black for code formatting
+- flake8 for linting
+- mypy for type checking
 
 ## 🎉 Success Metrics
 

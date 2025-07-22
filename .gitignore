@@ -333,3 +333,6 @@ docs/build/
 .coverage
 coverage.xml
 *.cover 
+
+z_archive/
+admin/

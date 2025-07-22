@@ -1,0 +1,40 @@
+<!-- Flask-TSK Header Layout Component -->
+<header class="header header-{{ theme|default('default') }}">
+    <div class="container">
+        <div class="header-top">
+            <div class="header-brand">
+                <h1 class="header-title">{{ title|default('Flask-TSK') }}</h1>
+                {% if subtitle %}
+                <p class="header-subtitle">{{ subtitle }}</p>
+                {% endif %}
+            </div>
+            
+            {% if show_search|default(true) %}
+            <div class="header-search">
+                <form class="search-form" action="{{ search_url|default('/search') }}" method="GET">
+                    <input type="text" name="q" placeholder="Search..." class="search-input" 
+                           value="{{ search_query|default('') }}">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        
+        {% if navigation_items %}
+        <nav class="header-nav">
+            <ul class="nav-list">
+                {% for item in navigation_items %}
+                <li class="nav-item {{ 'active' if item.active else '' }}">
+                    <a href="{{ item.url }}" class="nav-link">
+                        {% if item.icon %}<i class="{{ item.icon }}"></i>{% endif %}
+                        {{ item.text }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</header> 

@@ -39,6 +39,18 @@ setup(
     install_requires=[
         'Flask>=2.0.0',
         'tusktsk>=2.0.3',
+        # Performance optimizations (59x faster rendering)
+        'orjson>=3.0.0',           # Ultra-fast JSON serialization
+        'ujson>=5.0.0',            # Fast JSON parsing  
+        'msgpack>=1.0.0',          # Binary data serialization
+        # Multi-database support
+        'psycopg2-binary>=2.9.0',  # PostgreSQL adapter
+        'pymongo>=4.0.0',          # MongoDB driver
+        'redis>=5.0.0',            # Redis client
+        # Modern async framework support
+        'fastapi>=0.104.1',        # High-performance web framework
+        'uvicorn[standard]>=0.24.0', # ASGI server
+        'pydantic>=2.5.0',         # Data validation
     ],
     extras_require={
         'dev': [
@@ -49,20 +61,9 @@ setup(
             'flake8>=4.0.0',
             'mypy>=0.950',
         ],
-        'databases': [
-            'psycopg2-binary>=2.9.0',
-            'pymongo>=4.0.0',
-            'redis>=5.0.0',
-        ],
-        'performance': [
-            'orjson>=3.0.0',
-            'ujson>=5.0.0',
-            'msgpack>=1.0.0',
-        ],
-        'fastapi': [
-            'fastapi>=0.104.1',
-            'uvicorn[standard]>=0.24.0',
-            'pydantic>=2.5.0',
+        'minimal': [
+            'Flask>=2.0.0',
+            'tusktsk>=2.0.3',
         ],
     },
     python_requires='>=3.8',
